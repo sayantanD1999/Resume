@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <!-- jQuery library -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- jsPDF library -->
+    <script src="js/jsPDF/dist/jspdf.min.js"></script>
+</head>
+<style>
+    body {
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-weight: bolder;
+    }
+
+    i {
+        position: absolute;
+        padding-top: 25px;
+        padding-left: 20px;
+
+    }
+
+    .set_i {
+        position: absolute;
+        padding-top: 12px;
+        padding-left: 20px;
+        padding-right: 5px;
+
+    }
+
+    .set_info {
+        position: absolute;
+        padding-top: 8px;
+        padding-left: 80px;
+    }
+
+    .set_i2 {
+        position: absolute;
+        padding-top: 8px;
+        padding-left: 20px;
+        padding-right: 5px;
+
+    }
+
+    .set_info2 {
+        position: absolute;
+        padding-top: 8px;
+        padding-left: 80px;
+    }
+
+    .i2 {
+        position: absolute;
+        padding-top: 7px;
+        padding-left: 15px;
+    }
+
+    .ip {
+        /* margin: auto;
+        display: block; */
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 70%;
+        height: 50px;
+        text-align: center;
+        border-radius: 5px;
+        outline: none;
+        box-shadow: 5px 5px 5px grey;
+    }
+
+    .ip2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width: 70%;
+        height: 50px;
+        text-align: center;
+        border-radius: 50px;
+        outline: none;
+        padding-top: 8px;
+        outline: none;
+        background-color: cadetblue;
+        cursor: pointer;
+    }
+
+    .set {
+        text-align: center;
+        outline: none;
+        padding-top: 8px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .ip3 {
+        background-color: rgb(255, 255, 255);
+        width: 70%;
+        padding-top: 10px;
+        padding-left: 20px;
+        height: 50px;
+        text-align: center;
+        border-radius: 5px;
+        box-shadow: 5px 5px 5px grey;
+        outline: none;
+        cursor: pointer;
+        display: inline-block;
+
+    }
+
+
+    .float-container {
+        padding: 1px;
+    }
+
+    .float-child {
+        width: 50%;
+        float: left;
+    }
+
+    #addbtn {
+        padding-top: 30px;
+        border-radius: 50%;
+        background-color: rgb(255, 255, 255);
+        margin-left: 40px;
+        height: 50px;
+        width: 50px;
+        box-shadow: 5px 5px 5px grey;
+    }
+
+
+    #show_info {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        background-color: rgb(255, 255, 255);
+        text-align: center;
+        display: none;
+        height: auto;
+        background-image: url(wall2.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-weight: bolder;
+        background-attachment: fixed;
+    }
+
+
+    #content {
+        position: relative;
+        z-index: -1;
+    }
+
+    #front {
+        background-image: url(wall.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-weight: bolder;
+        background-attachment: fixed;
+        height: 750px;
+        top: 0;
+        left: 0;
+        position: absolute;
+        z-index: 10;
+        overflow: hidden;
+    }
+
+    #create {
+        height: 70px;
+        width: 140px;
+        border-radius: 50px;
+        background-color: rgb(0, 119, 255);
+        outline: none;
+        position: absolute;
+        color: white;
+        top: 60%;
+        left: 45%;
+        border: none;
+        box-shadow: 5px 5px 5px grey;
+        margin: -25px 0 0 -25px;
+    }
+
+    #create:hover {
+        background-color: blue;
+        color: aliceblue;
+        transition: 0.6s;
+    }
+</style>
+
+<body>
+    <div class="container-fluid" id="front">
+
+
+        <div>
+            <h1 style="text-align: center; margin-top: 20%; ">Spark your professional life with perfect resume</h1>
+            <button onclick="show_info()" id="create">Create Resume</button>
+        </div>
+
+
+        <br><br><br><br>
+
+        <div id="content" style="color: aliceblue; display: none;">
+
+            <div class="float-container" style="color: black; ">
+                <div class="float-child" style="height: 300px; background-color: whitesmoke;">
+                    <h2 id="set_name" style="text-align: center; padding-top: 10px; font-weight: bolder;"></h2>
+                    <div style="border-radius: 50%; margin-left: 20%; margin-top: -6%; ">
+                        <br><br><br>
+                        <i class="set_i2 fa fa-user" aria-hidden="true"></i>
+                        <div class="set_info2" id="set_dob"></div>
+                        <br><br>
+                        <i class="set_i2 fa fa-map-marker" aria-hidden="true"></i>
+                        <div class="set_info2" id="set_address"></div>
+                        <br><br>
+                        <i class="set_i2 fa fa-envelope" aria-hidden="true"></i>
+                        <div class="set_info2" id="set_email"></div>
+                        <br><br>
+                        <i class="set_i2 fa fa-phone" aria-hidden="true"></i>
+                        <div class="set_info2" id="set_phone"></div>
+                    </div>
+
+                </div>
+                <div class="float-child" style="height: 300px; background-color: whitesmoke;">
+                    <img id="output" width="160" height="180"
+                        style="border-radius: 50%; margin-left: 40%; margin-top: 10%;" />
+                </div>
+            </div>
+            <div class="float-container">
+                <div class="float-child">
+
+                    <div style=" height:200px; background-color:  rgb(27, 25, 22);">
+                        <h4 style="text-align: center; " class="set-style">Profile</h4>
+                        <div id="set_bio" style="padding-left: 30px;">
+                        </div>
+                    </div>
+
+
+                    <div id="div1" style=" height: 600px; display: none; background-color:  rgb(27, 25, 22);">
+                        <h4 style="text-align: center;" class="set-style">Internship Details</h4>
+                        <div id="intern" style="padding-left: 30x;">
+                            <i class="set_i fa fa-briefcase" aria-hidden="true"></i>
+                            <div class="set" id="set_io"></div>
+                            <br>
+                            <br>
+                            <i class="set_i fa fa-book" aria-hidden="true"></i>
+                            <div class="set" id="set_is"></div>
+
+                            <br><br>
+                            <i class="set_i fa fa-clock-o" aria-hidden="true"></i>
+                            <div class="set" id="set_time"></div>
+                            <br><br>
+                            <div class="set" style="padding-left: 30px;" id="set_notes"></div>
+                        </div>
+
+                    </div>
+
+                    <div id="div2" style=" height: 600px; display: none; background-color:  rgb(27, 25, 22);">
+                        <h4 style="text-align: center;" class="set-style">Work Experience</h4>
+                        <div id="profession" style="padding-left: 40px;">
+
+
+                        </div>
+                    </div>
+
+
+
+                    <div style="height: 1000px; background-color:  rgb(27, 25, 22);">
+                        <h4 style=" text-align: center;" class="set-style">Education</h4>
+                        <br><br>
+                        <div style="padding-left: 40px;">
+                            <h5>Graduation Degree Details</h5>
+                            <br>
+                            <i class="set_i fa fa-university" aria-hidden="true"></i>
+                            <div class="set" id="set_college"></div>
+                            <br>
+                            <i class="set_i fa fa-book" aria-hidden="true"></i>
+                            <div class="set" id="set_subject"></div>
+                            <br>
+                            <i class="set_i fa fa-arrow-right" aria-hidden="true"></i>
+                            <div class="set" id="set_from_to"></div>
+                        </div>
+                        <br><br><br>
+                        <div style="padding-left: 40px; display: none;" id="pg_details">
+                            <h5>Post Graduation Degree Details</h5>
+                            <br>
+                            <i class="set_i fa fa-university" aria-hidden="true"></i>
+                            <div class="set" id="set_pg_college"></div>
+                            <br>
+                            <i class="set_i fa fa-book" aria-hidden="true"></i>
+                            <div class="set" id="set_pg_subject"></div>
+                            <br>
+                            <i class="set_i fa fa-arrow-right" aria-hidden="true"></i>
+                            <div class="set" id="set_pg_from_to"></div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+                <div class="float-child">
+                    <div style="height: 400px; background-color: rgb(27, 25, 22);">
+                        <h4 style=" text-align: center;" class="set-style">Skills</h4>
+                        <div id="set_skill_div" style="padding-left: 40px;">
+
+                        </div>
+                    </div>
+
+                    <div style="height:400px; background-color:  rgb(27, 25, 22);">
+                        <h4 style=" text-align: center; " class="set-style">Hobbies</h4>
+                        <div id="set_hobbies_div" style="padding-left: 40px;">
+                        </div>
+                    </div>
+
+                    <div style="height: 980px; background-color:  rgb(27, 25, 22);">
+                        <h4 style=" text-align: center;" class="set-style">Achievements</h4>
+                        <div id="set_achievement_div" style="padding-left: 40px;">
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <br><br>
+        </div>
+
+
+    </div>
+
+
+    <div class="container-fluid" id="show_info">
+        <div style=" display: inline-block; width: 100%; ">
+            <h1>Personal Details</h1>
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" placeholder="Full Name" class="ip" id="name">
+            <br>
+            <br>
+            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+            <input type="date" placeholder="Date of Birth" class="ip" id="dob">
+            <br>
+            <br>
+            <i class="fa fa-address-card" aria-hidden="true"></i>
+            <input type="text" placeholder="Residential Address" class="ip" id="address">
+            <br>
+            <br>
+            <i class="fa fa-mobile" aria-hidden="true"></i>
+            <input type="text" placeholder="Mobile Number" class="ip" id="telephone">
+            <br>
+            <br>
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <input type="email" placeholder="Email Address" class="ip" id="email">
+            <br><br>
+            <h4>Select Your Image</h4>
+            <input type="file" id="img" name="img" src="" id="file" onchange="loadFile(event)" accept="image/*">
+            <br><br>
+        </div>
+
+
+        <br>
+
+
+        <div style="display: inline-block; width: 100%;">
+            <h1>Education</h1>
+            <i class="fa fa-university" aria-hidden="true"></i>
+            <input type="text" placeholder="Institute" class="ip" id="college">
+            <br><br>
+            <i class="fa fa-book" aria-hidden="true"></i>
+            <input type="text" placeholder="Stream" class="ip" id="subject">
+            <br><br>
+            <i class="fa fa-clock-o"></i>
+            <input type="text" placeholder="Course Duration" id="course_duration" class="ip">
+        </div>
+        <br><br>
+        <h3>Do you have any Post Graduate degree ? </h3>
+        <button class="btn btn-success" id="to_pg" onclick="show_pg()">Yes</button>
+        <div style="width: 100%; display: inline-block ;   display: none;" id="pg_info">
+            <i class="fa fa-university" aria-hidden="true"></i>
+            <input type="text" placeholder="University" class="ip" id="pg_college">
+            <br><br>
+            <i class="fa fa-book" aria-hidden="true"></i>
+            <input type="text" placeholder="Subject" class="ip" id="pg_subject">
+            <br><br>
+            <i class="fa fa-clock-o"></i>
+            <input type="text" placeholder="Course Duration" id="pg_course_duration" class="ip">
+        </div>
+
+
+        <br><br><br><br>
+
+        <div style="display: inline-block; width: 100%;">
+            <h1>Profile</h1>
+            <textarea name="" placeholder="Add a bio to your profile (Max 50 words)" id="bio" cols="30" rows="7"
+                style="height: 10%; border-radius: 5px;" class="ip"></textarea>
+        </div>
+
+        <br><br><br><br>
+
+        <div style="display: inline-block; width: 100%;">
+            <h1>Work Experience</h1>
+            <p>Are you fresher?</p>
+            <button class="btn btn-success" style="margin-right: 10px;" onclick="yesfresher()"
+                id="yes">yes</button><button class="btn btn-success" style="margin-left: 10px;" onclick="notfresher()"
+                id="no">No</button>
+
+            <div id="fresher" style="display: none;">
+                <h1>Internship Details</h1>
+                <i class="fa fa-briefcase" aria-hidden="true"></i>
+                <input type="text" placeholder="organization" class="ip" id="internship-organization">
+                <br>
+                <br>
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <input type="text" placeholder="Subject" class="ip" id="internship-subject">
+                <br><br>
+                <textarea id="notes" cols="30" rows="10" placeholder="Add Notes" style="height: 10%; border-radius: 5%;"
+                    class="ip"></textarea>
+                <br><br>
+                <select class="btn btn-success" style="color: black;" id="duration">
+                    <option value="One Month">One Month</option>>
+                    <option value="Three Months">Three Month</option>>
+                    <option value="Six Months">Six Months</option>>
+                </select>
+                <br><br>
+
+            </div>
+
+            <div id="professional" style="display: none; width: 100%;">
+                <h1>Add your professional details</h1>
+                <div id="office">
+                    <i class="fa fa-briefcase" aria-hidden="true"></i>
+                    <input type="text" placeholder="Company" class="ip company_name">
+                    <br><br>
+                    <i class="fa fa-id-badge" aria-hidden="true"></i>
+                    <input type="text" placeholder="Responsibility" class="ip company_post">
+                    <br><br>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    <input type="text" placeholder="Duration" class="ip time_span">
+                    <br><br>
+
+                </div>
+                <div id="box" style="width: 100%;">
+                </div>
+                <div style="position: relative; margin: auto; cursor: pointer;" id="addbtn" onclick="add_office()">
+                    <i class="fa fa-plus" style="  width: 50px;
+                                height: 50px;
+                                /* Center vertically and horizontally */
+                                position: absolute;
+                                top: 30%;
+                                left: 30%;
+                                z-index: 1;
+                                margin: -25px 0 0 -25px; " aria-hidden="true"></i>
+                </div>
+                <br><br>
+
+            </div>
+
+        </div>
+
+        <br><br>
+        <div style="display: inline-block; width: 100%; ">
+
+            <h1>Add your skills</h1>
+            <input type="text" class="skill ip" placeholder="skill">
+            <div id="new_skill">
+            </div>
+            <div style="position: relative; margin: auto; cursor: pointer;" id="addbtn" onclick="addskill()">
+                <i class="fa fa-plus" style="  width: 50px;
+                        height: 50px;
+                        /* Center vertically and horizontally */
+                        position: absolute;
+                        top: 30%;
+                        left: 30%;
+                        z-index: 1;
+                        font-size: larger;
+                        margin: -25px 0 0 -25px; " aria-hidden="true"></i>
+            </div>
+
+
+
+        </div>
+
+        <br><br><br><br>
+
+
+        <div style="display: inline-block; width: 100%;">
+            <h1>Add Your Achievements</h1>
+            <input type="text" class="achievement ip" placeholder="Achievement">
+            <div id="new_achievement">
+            </div>
+            <div style="position: relative; margin: auto; cursor: pointer;" id="addbtn" onclick="addachievement()">
+                <i class="fa fa-plus" style="  width: 50px;
+                        height: 50px;
+                        /* Center vertically and horizontally */
+                        position: absolute;
+                        top: 30%;
+                        left: 30%;
+                        z-index: 1;
+                        font-size: larger;
+                        margin: -25px 0 0 -25px; " aria-hidden="true"></i>
+
+                <br><br><br>
+
+            </div>
+
+        </div>
+
+        <br><br><br><br>
+        <div style="display: inline-block; width: 100%;">
+            <h2>Select Your Hobbies</h2>
+
+            <div class="ip3">
+                <i class="fa fa-globe i2" aria-hidden="true"></i>
+                <span style="padding-left: 80px;">Travelling</span>
+                <input id="button" type="checkbox" name="button" value="Travelling" />
+
+            </div>
+
+
+            <br><br>
+
+
+            <div class="ip3">
+                <i class="fa fa-book i2" aria-hidden="true"></i>
+                <span style="padding-left: 80px;">Reading</span>
+                <input id="button" type="checkbox" name="button" value="Reading" />
+            </div>
+
+            <br><br>
+
+            <div class="ip3">
+                <i class="fa fa-camera i2" aria-hidden="true"></i>
+                <span style="padding-left: 80px;">Photography</span>
+                <input id="button" type="checkbox" name="button" value="Photography" />
+            </div>
+
+            <br><br>
+
+
+            <div class="ip3">
+                <i class="fa fa-paint-brush i2" aria-hidden="true"></i>
+                <span style="padding-left: 80px;">Painting</span>
+                <input id="button" type="checkbox" name="button" value="Painting" />
+            </div>
+            <br><br>
+
+
+            <div class="ip3">
+                <i class="fa fa-pencil i2" aria-hidden="true"></i>
+                <span style="padding-left: 80px;">Writing</span>
+                <input id="button" type="checkbox" name="button" value="Writing" />
+            </div>
+            <br><br>
+
+
+
+            <div class="ip3">
+                <i class="fa fa-music i2" aria-hidden="true"></i>
+                <span style="padding-left: 80px;">Music</span>
+                <input id="button" type="checkbox" name="button" value="Cycling" />
+            </div>
+            <br><br>
+        </div>
+
+
+        <div>
+            <h3>Select Theme</h3>
+            <select class="btn btn-primary" style="color: black;" name="" id="color">
+                <option value="blue" style="background-color: cornflowerblue;">Blue</option>
+                <option value="pink" style="background-color: rgb(235, 84, 84);">Pink</option>
+                <option value="white" style="background-color: rgb(255, 253, 253);">White</option>
+            </select>
+        </div>
+        <br><br>
+        <button class="btn btn-primary" onclick="submit()">Submit</button>
+        <button class="btn btn-primary" disabled="true" id="pdf" onclick="pdf()">PDF</button>
+        <br><br>
+    </div>
+
+
+
+
+    <script>
+
+        function show_info() {
+            document.getElementById("show_info").style.display = "block";
+            document.getElementById("content").style.display = "block";
+            document.getElementById("front").style.display = "none";
+        }
+
+        var loadFile = function (event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
+        function yesfresher() {
+
+            document.getElementById("fresher").style.display = "block";
+            document.getElementById("yes").disabled = true;
+            document.getElementById("no").disabled = true;
+        }
+
+        function notfresher() {
+
+            document.getElementById("professional").style.display = "block";
+            document.getElementById("no").disabled = true;
+            document.getElementById("yes").disabled = true;
+
+        }
+
+        function add_office() {
+            var div = document.createElement("div");
+            div.id = "office";
+            var company = document.createElement("input");
+            company.setAttribute("type", "text");
+            company.setAttribute("placeholder", "Company");
+            company.setAttribute("class", "ip company_name");
+            //company.setAttribute("class", "company_name");
+
+            var post = document.createElement("input");
+            post.setAttribute("type", "text");
+            post.setAttribute("placeholder", "Responsibility");
+            post.setAttribute("class", "ip company_post");
+            //post.setAttribute("class", "company_post");
+
+            var period = document.createElement("input");
+            period.setAttribute("type", "text");
+            period.setAttribute("placeholder", "Duration");
+            period.setAttribute("class", "ip time_span");
+            //period.setAttribute("class", "time_span");
+
+            var b = document.createElement("br");
+            console.log("g");
+            div.appendChild(company);
+            div.appendChild(b);
+            div.appendChild(post);
+            div.appendChild(b);
+            div.appendChild(period);
+            div.appendChild(b);
+
+            document.getElementById("box").appendChild(div);
+
+        }
+
+        function addskill() {
+            var skill = document.createElement("input");
+            skill.setAttribute("type", "text");
+            skill.setAttribute("placeholder", "skill");
+            skill.setAttribute("class", "ip skill");
+            var b = document.createElement("BR");
+
+            document.getElementById("new_skill").appendChild(skill);
+            document.getElementById("new_skill").appendChild(b);
+        }
+
+        function addachievement() {
+            var achievement = document.createElement("input");
+            achievement.setAttribute("type", "text");
+            achievement.setAttribute("placeholder", "Achievement");
+            achievement.setAttribute("class", "ip achievement");
+            //achievement.setAttribute("class", "achievement");
+
+            var b = document.createElement("BR");
+
+            document.getElementById("new_achievement").appendChild(achievement);
+            document.getElementById("new_achievement").appendChild(b);
+        }
+
+        function show_pg() {
+            document.getElementById("pg_info").style.display = "block";
+            document.getElementById("pg_details").style.display = "block";
+        }
+        function submit() {
+            document.getElementById("pdf").disabled = false;
+
+            var theme = document.getElementsByClassName("set-style");
+            var color = document.getElementById("color").value;
+            console.log(color);
+            var set_theme;
+            if (color == "white") {
+                set_theme = "rgb(255,255,255)";
+            }
+            if (color == "pink") {
+                set_theme = "rgb(228, 48, 78)";
+            }
+            if (color == "blue") {
+                set_theme = "rgb(21, 155, 196)";
+            }
+            for (var i = 0; i < theme.length; i++) {
+                theme[i].style.color = set_theme;
+            }
+
+
+
+            var fullname = document.getElementById("name").value;
+            var dob = document.getElementById("dob").value;
+            var email = document.getElementById("email").value;
+            var address = document.getElementById("address").value;
+            var phone = document.getElementById("telephone").value;
+            var pic = document.getElementById("img").src;
+            console.log(phone);
+
+            document.getElementById("set_name").innerHTML = fullname;
+            document.getElementById("set_dob").innerHTML = dob;
+            document.getElementById("set_email").innerHTML = email;
+            document.getElementById("set_address").innerHTML = address;
+            document.getElementById("set_phone").innerHTML = phone;
+            //document.getElementById("set_pic").src=pic;
+
+
+            var college = document.getElementById("college").value;
+            var subject = document.getElementById("subject").value;
+            var from_to = document.getElementById("course_duration").value;
+            var bio = document.getElementById("bio").value;
+
+            document.getElementById("set_bio").innerHTML = bio;
+            document.getElementById("set_college").innerHTML = college;
+            document.getElementById("set_subject").innerHTML = subject;
+            document.getElementById("set_from_to").innerHTML = from_to;
+
+
+            var University = document.getElementById("pg_college").value;
+            var pg_subject = document.getElementById("pg_subject").value;
+            var pg_from_to = document.getElementById("pg_course_duration").value;
+
+            document.getElementById("set_pg_college").innerHTML = University;
+            document.getElementById("set_pg_subject").innerHTML = pg_subject;
+            document.getElementById("set_pg_from_to").innerHTML = pg_from_to;
+
+            if (document.getElementById("fresher").style.display == "block") {
+                document.getElementById("div1").style.display = "block";
+                i_org = document.getElementById("internship-organization").value;
+                i_sub = document.getElementById("internship-subject").value;
+                i_notes = document.getElementById("notes").value;
+                i_time = document.getElementById("duration").value;
+
+                document.getElementById("set_io").innerHTML = i_org;
+                document.getElementById("set_is").innerHTML = i_sub;
+                document.getElementById("set_time").innerHTML = i_time;
+                document.getElementById("set_notes").innerHTML = i_notes;
+                console.log(i_time);
+            }
+
+
+            if (document.getElementById("professional").style.display == "block") {
+                document.getElementById("div2").style.display = "block";
+                cn = [];
+                cp = [];
+                ct = [];
+
+                p_org = document.getElementsByClassName("company_name");
+                for (var i = 0; i < p_org.length; i++) {
+                    var x = p_org[i].value;
+                    cn.push(x);
+                }
+                console.log(cn);
+                p_post = document.getElementsByClassName("company_post");
+                for (var i = 0; i < p_post.length; i++) {
+                    var x = p_post[i].value;
+                    cp.push(x);
+                }
+                console.log(cp);
+                p_time = document.getElementsByClassName("time_span");
+                for (var i = 0; i < p_time.length; i++) {
+                    var x = p_time[i].value;
+                    ct.push(x);
+                }
+                console.log(ct);
+
+                for (var i = 0, j = 0, k = 0; i < cn.length, j < cp.length, k < ct.length; i++, j++, k++) {
+                    var main_div = document.createElement("div");
+
+                    var cn_div = document.createElement("div");
+                    cn_div.className = "set";
+                    cn_div.innerHTML = cn[i];
+                    var com_nam = document.createElement("i");
+                    com_nam.setAttribute("class", "fa fa-briefcase");
+                    console.log(cn[i]);
+
+                    var cp_div = document.createElement("div");
+                    cp_div.className = "set";
+                    cp_div.innerHTML = cp[j];
+                    var com_pos = document.createElement("i");
+                    com_pos.setAttribute("class", "fa fa-id-badge");
+                    console.log(cp[j]);
+
+                    var ct_div = document.createElement("div");
+                    ct_div.className = "set";
+                    ct_div.innerHTML = ct[k];
+                    var com_time = document.createElement("i");
+                    com_time.setAttribute("class", "fa fa-clock-o");
+                    console.log(ct[k]);
+
+                    var b = document.createElement("br");
+
+
+                    main_div.appendChild(com_nam);
+                    main_div.appendChild(cn_div);
+                    main_div.appendChild(b);
+                    main_div.appendChild(com_pos);
+                    main_div.appendChild(cp_div);
+                    main_div.appendChild(b);
+                    main_div.appendChild(com_time);
+                    main_div.appendChild(ct_div);
+                    main_div.appendChild(b);
+
+                    document.getElementById("profession").appendChild(main_div);
+                }
+
+            }
+
+            skills_arr = [];
+            skill = document.getElementsByClassName("skill");
+            for (var i = 0; i < skill.length; i++) {
+                var x = skill[i].value;
+                skills_arr.push(x);
+            }
+            console.log(skills_arr);
+            var main_div2 = document.createElement("div");
+
+            for (var i = 0; i < skills_arr.length; i++) {
+
+
+                var skill_div = document.createElement("div");
+                skill_div.className = "set";
+                skill_div.innerHTML = skills_arr[i];
+
+                var skill_nam = document.createElement("i");
+                skill_nam.setAttribute("class", "set_i fa fa-arrow-right");
+
+                main_div2.appendChild(skill_nam);
+                main_div2.appendChild(skill_div);
+
+                document.getElementById("set_skill_div").appendChild(main_div2);
+
+            }
+
+            achievement_arr = [];
+            achievement = document.getElementsByClassName("achievement");
+            for (var i = 0; i < achievement.length; i++) {
+                var x = achievement[i].value;
+                achievement_arr.push(x);
+            }
+            console.log(achievement_arr);
+
+            var main_div3 = document.createElement("div");
+
+            for (var i = 0; i < achievement_arr.length; i++) {
+
+
+                var achievement_div = document.createElement("div");
+                achievement_div.className = "set";
+                achievement_div.innerHTML = achievement_arr[i];
+
+                var skill_nam = document.createElement("i");
+                skill_nam.setAttribute("class", "set_i fa fa-arrow-right");
+
+                main_div3.appendChild(skill_nam);
+                main_div3.appendChild(achievement_div);
+
+                document.getElementById("set_achievement_div").appendChild(main_div3);
+
+            }
+
+
+            //var hobbies = document.getElementsByClassName("ip3");
+            var hobbies = document.getElementsByName("button");
+            hobbies_arr = [];
+            for (var i = 0; i < hobbies.length; i++) {
+                if (hobbies[i].checked == true) {
+                    var x = hobbies[i].value;
+                    hobbies_arr.push(x);
+                    var hobbies_nam = document.createElement("i");
+                    hobbies_nam.setAttribute("class", "set_i fa fa-arrow-right");
+                    var hobbies_div = document.createElement("div");
+                    hobbies_div.className = "set";
+                    hobbies_div.innerHTML = x;
+                    var t = document.getElementById("set_hobbies_div");
+                    t.appendChild(hobbies_nam);
+                    t.appendChild(hobbies_div);
+                    console.log(x);
+                }
+
+            }
+
+            console.log(hobbies_arr);
+        }
+
+        function pdf() {
+            const invoice = this.document.getElementById("content");
+            console.log(invoice);
+            console.log(window);
+            var opt = {
+                margin: 0,
+                filename: 'myfile.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 1 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
+        }
+
+    </script>
+</body>
+
+</html>
