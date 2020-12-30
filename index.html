@@ -175,14 +175,14 @@
 
     #create {
         height: 70px;
-        width: 140px;
+        width: 150px;
         border-radius: 50px;
         background-color: rgb(0, 119, 255);
         outline: none;
         position: absolute;
         color: white;
         top: 60%;
-        left: 45%;
+        /* left:45%; */
         border: none;
         box-shadow: 5px 5px 5px grey;
         margin: -25px 0 0 -25px;
@@ -199,7 +199,7 @@
     <div class="container-fluid" id="front">
 
 
-        <div>
+        <div style="display: flex; justify-content: center; align-items: center;">
             <h1 style="text-align: center; margin-top: 20%; ">Spark your professional life with perfect resume</h1>
             <button onclick="show_info()" id="create">Create Resume</button>
         </div>
@@ -235,8 +235,8 @@
             </div>
             <div class="float-container">
                 <div class="float-child">
-
-                    <div style=" height:200px; background-color:  rgb(27, 25, 22);">
+                    <div style=" height:200px; background-color:  rgb(27, 25, 22); margin-top: 5%;">
+                        <br>
                         <h4 style="text-align: center; " class="set-style">Profile</h4>
                         <div id="set_bio" style="padding-left: 30px;">
                         </div>
@@ -307,7 +307,8 @@
 
                 </div>
                 <div class="float-child">
-                    <div style="height: 400px; background-color: rgb(27, 25, 22);">
+                    <div style="height: 400px; background-color: rgb(27, 25, 22); margin-top: 5%;">
+                        <br>
                         <h4 style=" text-align: center;" class="set-style">Skills</h4>
                         <div id="set_skill_div" style="padding-left: 40px;">
 
@@ -322,6 +323,7 @@
 
                     <div style="height: 980px; background-color:  rgb(27, 25, 22);">
                         <h4 style=" text-align: center;" class="set-style">Achievements</h4>
+                        <br>
                         <div id="set_achievement_div" style="padding-left: 40px;">
 
                         </div>
