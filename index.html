@@ -28,7 +28,6 @@
         position: absolute;
         padding-top: 25px;
         padding-left: 20px;
-        padding-right: 5px;
 
     }
 
@@ -39,7 +38,6 @@
         padding-right: 5px;
 
     }
-   
 
     .set_info {
         position: absolute;
@@ -73,7 +71,7 @@
         margin-top: 10px;
         margin-bottom: 10px;
         width: 70%;
-padding-left:40px;
+        padding-left: 40px;
         height: 50px;
         text-align: center;
         border-radius: 5px;
@@ -99,6 +97,16 @@ padding-left:40px;
         text-align: center;
         outline: none;
         padding-top: 8px;
+        padding-left: 20px;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .set2 {
+        text-align: center;
+        outline: none;
+        padding-top: 20px;
+        padding-left: 20px;
         outline: none;
         cursor: pointer;
     }
@@ -117,12 +125,12 @@ padding-left:40px;
         display: inline-block;
 
     }
-    
-        @media screen and (max-width: 600px) {
-    .ip {
-    width: 100%;
-  }
-}
+
+    @media screen and (max-width: 600px) {
+        .ip {
+            width: 100%;
+        }
+    }
 
 
 
@@ -283,7 +291,7 @@ padding-left:40px;
 
 
 
-                    <div style="height: 1000px; background-color:  rgb(27, 25, 22);">
+                    <div style="height: 1010px; background-color:  rgb(27, 25, 22);">
                         <h4 style=" text-align: center;" class="set-style">Education</h4>
                         <br><br>
                         <div style="padding-left: 40px;">
@@ -332,7 +340,7 @@ padding-left:40px;
                         </div>
                     </div>
 
-                    <div style="height: 980px; background-color:  rgb(27, 25, 22);">
+                    <div style="height: 1010px; background-color:  rgb(27, 25, 22);">
                         <h4 style=" text-align: center;" class="set-style">Achievements</h4>
                         <br>
                         <div id="set_achievement_div" style="padding-left: 40px;">
@@ -628,38 +636,59 @@ padding-left:40px;
             document.getElementById("yes").disabled = true;
 
         }
+        count = 0
 
         function add_office() {
-            var div = document.createElement("div");
-            div.id = "office";
-            var company = document.createElement("input");
-            company.setAttribute("type", "text");
-            company.setAttribute("placeholder", "Company");
-            company.setAttribute("class", "ip company_name");
-            //company.setAttribute("class", "company_name");
 
-            var post = document.createElement("input");
-            post.setAttribute("type", "text");
-            post.setAttribute("placeholder", "Responsibility");
-            post.setAttribute("class", "ip company_post");
-            //post.setAttribute("class", "company_post");
+            count = count + 1;
+            console.log(count);
 
-            var period = document.createElement("input");
-            period.setAttribute("type", "text");
-            period.setAttribute("placeholder", "Duration");
-            period.setAttribute("class", "ip time_span");
-            //period.setAttribute("class", "time_span");
+            if (count < 3) {
+                var div = document.createElement("div");
+                div.id = "office";
+                var company = document.createElement("input");
+                company.setAttribute("type", "text");
+                company.setAttribute("placeholder", "Company");
+                company.setAttribute("class", "ip company_name");
+                //company.setAttribute("class", "company_name");
 
-            var b = document.createElement("br");
-            console.log("g");
-            div.appendChild(company);
-            div.appendChild(b);
-            div.appendChild(post);
-            div.appendChild(b);
-            div.appendChild(period);
-            div.appendChild(b);
+                // var com_nam2 = document.createElement("i");
+                // com_nam2.setAttribute("class", "fa fa-briefcase");
 
-            document.getElementById("box").appendChild(div);
+                var post = document.createElement("input");
+                post.setAttribute("type", "text");
+                post.setAttribute("placeholder", "Responsibility");
+                post.setAttribute("class", "ip company_post");
+                //post.setAttribute("class", "company_post");
+
+                // var com_pos2 = document.createElement("i");
+                // com_pos2.setAttribute("class", "fa fa-id-badge");
+
+                var period = document.createElement("input");
+                period.setAttribute("type", "text");
+                period.setAttribute("placeholder", "Duration");
+                period.setAttribute("class", "ip time_span");
+                //period.setAttribute("class", "time_span");
+
+                // var com_time2 = document.createElement("i");
+                // com_time2.setAttribute("class", "fa fa-clock-o");
+
+                var b = document.createElement("br");
+                console.log("g");
+                // div.appendChild(com_nam2);
+                div.appendChild(company);
+                div.appendChild(b);
+                div.appendChild(post);
+                div.appendChild(b);
+                div.appendChild(period);
+                div.appendChild(b);
+
+                document.getElementById("box").appendChild(div);
+
+            }
+            else {
+                alert("Maximum 3 companies' details are accepted");
+            }
 
         }
 
@@ -692,7 +721,7 @@ padding-left:40px;
             document.getElementById("pg_details").style.display = "block";
         }
         function submit() {
-            document.getElementById("pdf").disabled = false;
+            // document.getElementById("pdf").disabled = false;
 
             var theme = document.getElementsByClassName("set-style");
             var color = document.getElementById("color").value;
@@ -706,6 +735,7 @@ padding-left:40px;
             }
             if (color == "blue") {
                 set_theme = "rgb(21, 155, 196)";
+
             }
             for (var i = 0; i < theme.length; i++) {
                 theme[i].style.color = set_theme;
@@ -792,21 +822,21 @@ padding-left:40px;
                     var main_div = document.createElement("div");
 
                     var cn_div = document.createElement("div");
-                    cn_div.className = "set";
+                    cn_div.className = "set2";
                     cn_div.innerHTML = cn[i];
                     var com_nam = document.createElement("i");
                     com_nam.setAttribute("class", "fa fa-briefcase");
                     console.log(cn[i]);
 
                     var cp_div = document.createElement("div");
-                    cp_div.className = "set";
+                    cp_div.className = "set2";
                     cp_div.innerHTML = cp[j];
                     var com_pos = document.createElement("i");
                     com_pos.setAttribute("class", "fa fa-id-badge");
                     console.log(cp[j]);
 
                     var ct_div = document.createElement("div");
-                    ct_div.className = "set";
+                    ct_div.className = "set2";
                     ct_div.innerHTML = ct[k];
                     var com_time = document.createElement("i");
                     com_time.setAttribute("class", "fa fa-clock-o");
@@ -903,7 +933,7 @@ padding-left:40px;
                 }
 
             }
-
+            document.getElementById("pdf").disabled = false;
             console.log(hobbies_arr);
         }
 
