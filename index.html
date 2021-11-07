@@ -1,957 +1,1728 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume Builder</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.17/tailwind.min.css"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js"></script>
     <!-- jQuery library -->
     <script src="js/jquery.min.js"></script>
-
     <!-- jsPDF library -->
     <script src="js/jsPDF/dist/jspdf.min.js"></script>
-</head>
-<style>
-    body {
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-        font-weight: bolder;
-    }
-
-    i {
-        position: absolute;
-        padding-top: 25px;
-        padding-left: 20px;
-
-    }
-
-    .set_i {
-        position: absolute;
-        padding-top: 12px;
-        padding-left: 20px;
-        padding-right: 5px;
-
-    }
-
-    .set_info {
-        position: absolute;
-        padding-top: 8px;
-        padding-left: 80px;
-    }
-
-    .set_i2 {
-        position: absolute;
-        padding-top: 8px;
-        padding-left: 20px;
-        padding-right: 5px;
-
-    }
-
-    .set_info2 {
-        position: absolute;
-        padding-top: 8px;
-        padding-left: 80px;
-    }
-
-    .i2 {
-        position: absolute;
-        padding-top: 7px;
-        padding-left: 15px;
-    }
-
-    .ip {
-        /* margin: auto;
-        display: block; */
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 70%;
-        padding-left: 40px;
-        height: 50px;
-        text-align: center;
-        border-radius: 5px;
-        outline: none;
-        box-shadow: 5px 5px 5px grey;
-    }
-
-    .ip2 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 70%;
-        height: 50px;
-        text-align: center;
-        border-radius: 50px;
-        outline: none;
-        padding-top: 8px;
-        outline: none;
-        background-color: cadetblue;
-        cursor: pointer;
-    }
-
-    .set {
-        text-align: center;
-        outline: none;
-        padding-top: 8px;
-        padding-left: 20px;
-        outline: none;
-        cursor: pointer;
-    }
-
-    .set2 {
-        text-align: center;
-        outline: none;
-        padding-top: 20px;
-        padding-left: 20px;
-        outline: none;
-        cursor: pointer;
-    }
-
-    .ip3 {
-        background-color: rgb(255, 255, 255);
-        width: 70%;
-        padding-top: 10px;
-        padding-left: 20px;
-        height: 50px;
-        text-align: center;
-        border-radius: 5px;
-        box-shadow: 5px 5px 5px grey;
-        outline: none;
-        cursor: pointer;
-        display: inline-block;
-
-    }
-
-    @media screen and (max-width: 600px) {
-        .ip {
-            width: 100%;
-        }
-    }
-
-
-
-    .float-container {
-        padding: 1px;
-    }
-
-    .float-child {
-        width: 50%;
-        float: left;
-    }
-
-    #addbtn {
-        padding-top: 30px;
-        border-radius: 50%;
-        background-color: rgb(255, 255, 255);
-        margin-left: 40px;
-        height: 50px;
-        width: 50px;
-        box-shadow: 5px 5px 5px grey;
-    }
-
-
-    #show_info {
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 10;
-        background-color: rgb(255, 255, 255);
-        text-align: center;
-        display: none;
-        height: auto;
-        background-image: url(wall2.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        font-weight: bolder;
-        background-attachment: fixed;
-    }
-
-
-    #content {
-        position: relative;
-        z-index: -1;
-    }
-
-    #front {
-        background-image: url(wall.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        font-weight: bolder;
-        background-attachment: fixed;
-        height: 100%;
-        top: 0;
-        left: 0;
-        position: absolute;
-        z-index: 10;
-        overflow: hidden;
-    }
-
-    #create {
-        height: 70px;
-        width: 150px;
-        border-radius: 50px;
-        background-color: rgb(0, 119, 255);
-        outline: none;
-        position: absolute;
-        color: white;
-        top: 60%;
-        /* left:45%; */
-        border: none;
-        box-shadow: 5px 5px 5px grey;
-        margin: -25px 0 0 -25px;
-    }
-
-    #create:hover {
-        background-color: blue;
-        color: aliceblue;
-        transition: 0.6s;
-    }
-</style>
-
-<body>
-    <div class="container-fluid" id="front">
-
-
-        <div style="display: flex; justify-content: center; align-items: center;">
-            <h1 style="text-align: center; margin-top: 20%; ">Spark your professional life with perfect resume</h1>
-            <button onclick="show_info()" id="create">Create Resume</button>
-        </div>
-
-
-        <br><br><br><br>
-
-        <div id="content" style="color: aliceblue; display: none;">
-
-            <div class="float-container" style="color: black; ">
-                <div class="float-child" style="height: 300px; background-color: whitesmoke;">
-                    <h2 id="set_name" style="text-align: center; padding-top: 10px; font-weight: bolder;"></h2>
-                    <div style="border-radius: 50%; margin-left: 20%; margin-top: -6%; ">
-                        <br><br><br>
-                        <i class="set_i2 fa fa-user" aria-hidden="true"></i>
-                        <div class="set_info2" id="set_dob"></div>
-                        <br><br>
-                        <i class="set_i2 fa fa-map-marker" aria-hidden="true"></i>
-                        <div class="set_info2" id="set_address"></div>
-                        <br><br>
-                        <i class="set_i2 fa fa-envelope" aria-hidden="true"></i>
-                        <div class="set_info2" id="set_email"></div>
-                        <br><br>
-                        <i class="set_i2 fa fa-phone" aria-hidden="true"></i>
-                        <div class="set_info2" id="set_phone"></div>
-                    </div>
-
-                </div>
-                <div class="float-child" style="height: 300px; background-color: whitesmoke;">
-                    <br>
-                    <img id="output" width="160" height="180"
-                        style="border-radius: 50%; margin-left: 40%; margin-top: 10%;" />
-                </div>
-            </div>
-            <div class="float-container">
-                <div class="float-child">
-                    <div style=" height:300px; background-color:  rgb(27, 25, 22);">
-                        <br>
-                        <h4 style="text-align: center; " class="set-style">Profile</h4>
-                        <div id="set_bio" style="padding-left: 30px;">
-                        </div>
-                    </div>
-
-
-                    <div id="div1" style=" height: 500px; display: none; background-color:  rgb(27, 25, 22);">
-                        <h4 style="text-align: center;" class="set-style">Internship Details</h4>
-                        <div id="intern" style="padding-left: 30x;">
-                            <i class="set_i fa fa-briefcase" aria-hidden="true"></i>
-                            <div class="set" id="set_io"></div>
-                            <br>
-                            <br>
-                            <i class="set_i fa fa-book" aria-hidden="true"></i>
-                            <div class="set" id="set_is"></div>
-
-                            <br><br>
-                            <i class="set_i fa fa-clock-o" aria-hidden="true"></i>
-                            <div class="set" id="set_time"></div>
-                            <br><br>
-                            <div class="set" style="padding-left: 30px;" id="set_notes"></div>
-                        </div>
-
-                    </div>
-
-                    <div id="div2" style=" height: 500px; display: none; background-color:  rgb(27, 25, 22);">
-                        <h4 style="text-align: center;" class="set-style">Work Experience</h4>
-                        <div id="profession" style="padding-left: 40px;">
-
-
-                        </div>
-                    </div>
-
-
-
-                    <div style="height: 1010px; background-color:  rgb(27, 25, 22);">
-                        <h4 style=" text-align: center;" class="set-style">Education</h4>
-                        <br><br>
-                        <div style="padding-left: 40px;">
-                            <h5 style="text-align: center;">Graduation Degree Details</h5>
-                            <br>
-                            <i class="set_i fa fa-university" aria-hidden="true"></i>
-                            <div class="set" id="set_college"></div>
-                            <br>
-                            <i class="set_i fa fa-book" aria-hidden="true"></i>
-                            <div class="set" id="set_subject"></div>
-                            <br>
-                            <i class="set_i fa fa-arrow-right" aria-hidden="true"></i>
-                            <div class="set" id="set_from_to"></div>
-                        </div>
-                        <br><br><br>
-                        <div style="padding-left: 40px; display: none;" id="pg_details">
-                            <h5 style="text-align: center;">Post Graduation Degree Details</h5>
-                            <br>
-                            <i class="set_i fa fa-university" aria-hidden="true"></i>
-                            <div class="set" id="set_pg_college"></div>
-                            <br>
-                            <i class="set_i fa fa-book" aria-hidden="true"></i>
-                            <div class="set" id="set_pg_subject"></div>
-                            <br>
-                            <i class="set_i fa fa-arrow-right" aria-hidden="true"></i>
-                            <div class="set" id="set_pg_from_to"></div>
-                        </div>
-                    </div>
-
-
-
-
-                </div>
-                <div class="float-child">
-                    <div style="height: 400px; background-color: rgb(27, 25, 22);">
-                        <br>
-                        <h4 style=" text-align: center;" class="set-style">Skills</h4>
-                        <div id="set_skill_div" style="padding-left: 40px;">
-
-                        </div>
-                    </div>
-
-                    <div style="height:400px; background-color:  rgb(27, 25, 22);">
-                        <h4 style=" text-align: center; " class="set-style">Hobbies</h4>
-                        <div id="set_hobbies_div" style="padding-left: 40px;">
-                        </div>
-                    </div>
-
-                    <div style="height: 1010px; background-color:  rgb(27, 25, 22);">
-                        <h4 style=" text-align: center;" class="set-style">Achievements</h4>
-                        <br>
-                        <div id="set_achievement_div" style="padding-left: 40px;">
-
-                        </div>
-                    </div>
-
-
-
-                </div>
-            </div>
-            <br><br>
-        </div>
-
-
-    </div>
-
-
-    <div class="container-fluid" id="show_info">
-        <div style=" display: inline-block; width: 100%; ">
-            <h1>Personal Details</h1>
-            <i class="fa fa-user" aria-hidden="true"></i>
-            <input type="text" placeholder="Full Name" class="ip" id="name">
-            <br>
-            <br>
-            <i class="fa fa-calendar-o" aria-hidden="true"></i>
-            <input type="date" placeholder="Date of Birth" class="ip" id="dob">
-            <br>
-            <br>
-            <i class="fa fa-address-card" aria-hidden="true"></i>
-            <input type="text" placeholder="Residential Address" class="ip" id="address">
-            <br>
-            <br>
-            <i class="fa fa-mobile" aria-hidden="true"></i>
-            <input type="text" placeholder="Mobile Number" class="ip" id="telephone">
-            <br>
-            <br>
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <input type="email" placeholder="Email Address" class="ip" id="email">
-            <br><br>
-            <h4>Select Your Image</h4>
-            <input type="file" id="img" name="img" src="" id="file" onchange="loadFile(event)" accept="image/*">
-            <br><br>
-        </div>
-
-
-        <br>
-
-
-        <div style="display: inline-block; width: 100%;">
-            <h1>Education</h1>
-            <i class="fa fa-university" aria-hidden="true"></i>
-            <input type="text" placeholder="Institute" class="ip" id="college">
-            <br><br>
-            <i class="fa fa-book" aria-hidden="true"></i>
-            <input type="text" placeholder="Stream" class="ip" id="subject">
-            <br><br>
-            <i class="fa fa-clock-o"></i>
-            <input type="text" placeholder="Course Duration" id="course_duration" class="ip">
-        </div>
-        <br><br>
-        <h3>Do you have any Post Graduate degree ? </h3>
-        <button class="btn btn-success" id="to_pg" onclick="show_pg()">Yes</button>
-        <div style="width: 100%; display: inline-block ;   display: none;" id="pg_info">
-            <i class="fa fa-university" aria-hidden="true"></i>
-            <input type="text" placeholder="University" class="ip" id="pg_college">
-            <br><br>
-            <i class="fa fa-book" aria-hidden="true"></i>
-            <input type="text" placeholder="Subject" class="ip" id="pg_subject">
-            <br><br>
-            <i class="fa fa-clock-o"></i>
-            <input type="text" placeholder="Course Duration" id="pg_course_duration" class="ip">
-        </div>
-
-
-        <br><br><br><br>
-
-        <div style="display: inline-block; width: 100%;">
-            <h1>Profile</h1>
-            <textarea name="" placeholder="Add a bio to your profile (Max 50 words)" id="bio" cols="30" rows="7"
-                style="height: 10%; border-radius: 5px;" class="ip"></textarea>
-        </div>
-
-        <br><br><br><br>
-
-        <div style="display: inline-block; width: 100%;">
-            <h1>Work Experience</h1>
-            <p>Are you fresher?</p>
-            <button class="btn btn-success" style="margin-right: 10px;" onclick="yesfresher()"
-                id="yes">yes</button><button class="btn btn-success" style="margin-left: 10px;" onclick="notfresher()"
-                id="no">No</button>
-
-            <div id="fresher" style="display: none;">
-                <h1>Internship Details</h1>
-                <i class="fa fa-briefcase" aria-hidden="true"></i>
-                <input type="text" placeholder="organization" class="ip" id="internship-organization">
-                <br>
-                <br>
-                <i class="fa fa-book" aria-hidden="true"></i>
-                <input type="text" placeholder="Subject" class="ip" id="internship-subject">
-                <br><br>
-                <textarea id="notes" cols="30" rows="10" placeholder="Add Notes" style="height: 10%; border-radius: 5%;"
-                    class="ip"></textarea>
-                <br><br>
-                <select class="btn btn-success" style="color: black;" id="duration">
-                    <option value="One Month">One Month</option>>
-                    <option value="Three Months">Three Month</option>>
-                    <option value="Six Months">Six Months</option>>
-                </select>
-                <br><br>
-
-            </div>
-
-            <div id="professional" style="display: none; width: 100%;">
-                <h1>Add your professional details (Max 3 companies)</h1>
-                <div id="office">
-                    <i class="fa fa-briefcase" aria-hidden="true"></i>
-                    <input type="text" placeholder="Company" class="ip company_name">
-                    <br><br>
-                    <i class="fa fa-id-badge" aria-hidden="true"></i>
-                    <input type="text" placeholder="Responsibility" class="ip company_post">
-                    <br><br>
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <input type="text" placeholder="Duration" class="ip time_span">
-                    <br><br>
-
-                </div>
-                <div id="box" style="width: 100%;">
-                </div>
-                <div style="position: relative; margin: auto; cursor: pointer;" id="addbtn" onclick="add_office()">
-                    <i class="fa fa-plus" style="  width: 50px;
-                                height: 50px;
-                                /* Center vertically and horizontally */
-                                position: absolute;
-                                top: 30%;
-                                left: 30%;
-                                z-index: 1;
-                                margin: -25px 0 0 -25px; " aria-hidden="true"></i>
-                </div>
-                <br><br>
-
-            </div>
-
-        </div>
-
-        <br><br>
-        <div style="display: inline-block; width: 100%; ">
-
-            <h1>Add your skills</h1>
-            <input type="text" class="skill ip" placeholder="skill">
-            <div id="new_skill">
-            </div>
-            <div style="position: relative; margin: auto; cursor: pointer;" id="addbtn" onclick="addskill()">
-                <i class="fa fa-plus" style="  width: 50px;
-                        height: 50px;
-                        /* Center vertically and horizontally */
-                        position: absolute;
-                        top: 30%;
-                        left: 30%;
-                        z-index: 1;
-                        font-size: larger;
-                        margin: -25px 0 0 -25px; " aria-hidden="true"></i>
-            </div>
-
-
-
-        </div>
-
-        <br><br><br><br>
-
-
-        <div style="display: inline-block; width: 100%;">
-            <h1>Add Your Achievements</h1>
-            <input type="text" class="achievement ip" placeholder="Achievement">
-            <div id="new_achievement">
-            </div>
-            <div style="position: relative; margin: auto; cursor: pointer;" id="addbtn" onclick="addachievement()">
-                <i class="fa fa-plus" style="  width: 50px;
-                        height: 50px;
-                        /* Center vertically and horizontally */
-                        position: absolute;
-                        top: 30%;
-                        left: 30%;
-                        z-index: 1;
-                        font-size: larger;
-                        margin: -25px 0 0 -25px; " aria-hidden="true"></i>
-
-                <br><br><br>
-
-            </div>
-
-        </div>
-
-        <br><br><br><br>
-        <div style="display: inline-block; width: 100%;">
-            <h2>Select Your Hobbies</h2>
-
-            <div class="ip3">
-                <i class="fa fa-globe i2" aria-hidden="true"></i>
-                <span style="padding-left: 80px;">Travelling</span>
-                <input id="button" type="checkbox" name="button" value="Travelling" />
-
-            </div>
-
-
-            <br><br>
-
-
-            <div class="ip3">
-                <i class="fa fa-book i2" aria-hidden="true"></i>
-                <span style="padding-left: 80px;">Reading</span>
-                <input id="button" type="checkbox" name="button" value="Reading" />
-            </div>
-
-            <br><br>
-
-            <div class="ip3">
-                <i class="fa fa-camera i2" aria-hidden="true"></i>
-                <span style="padding-left: 80px;">Photography</span>
-                <input id="button" type="checkbox" name="button" value="Photography" />
-            </div>
-
-            <br><br>
-
-
-            <div class="ip3">
-                <i class="fa fa-paint-brush i2" aria-hidden="true"></i>
-                <span style="padding-left: 80px;">Painting</span>
-                <input id="button" type="checkbox" name="button" value="Painting" />
-            </div>
-            <br><br>
-
-
-            <div class="ip3">
-                <i class="fa fa-pencil i2" aria-hidden="true"></i>
-                <span style="padding-left: 80px;">Writing</span>
-                <input id="button" type="checkbox" name="button" value="Writing" />
-            </div>
-            <br><br>
-
-
-
-            <div class="ip3">
-                <i class="fa fa-music i2" aria-hidden="true"></i>
-                <span style="padding-left: 80px;">Music</span>
-                <input id="button" type="checkbox" name="button" value="Cycling" />
-            </div>
-            <br><br>
-        </div>
-
-
+  </head>
+  <body>
+    <div id="whole_page" style="display: none">
+      <div id="pdf_name_setter">
         <div>
-            <h3>Select Theme</h3>
-            <select class="btn btn-primary" style="color: black;" name="" id="color">
-                <option value="blue" style="background-color: cornflowerblue;">Blue</option>
-                <option value="pink" style="background-color: rgb(235, 84, 84);">Pink</option>
-                <option value="white" style="background-color: rgb(255, 253, 253);">White</option>
-            </select>
+          <h3>Resume File Name</h3>
+          <input type="text" id="pdf_ip" placeholder="e.g - JaneDoe" />
+          <button class="btn btn-success" onclick="submit()">Download</button>
         </div>
-        <br><br>
-        <button class="btn btn-primary" onclick="submit()">Submit</button>
-        <button class="btn btn-primary" disabled="true" id="pdf" onclick="pdf()">PDF</button>
-        <br><br>
+      </div>
     </div>
 
+    <div id="pdf_div" style="display: none">
+      <div class="top_div">
+        <div class="left_top_div">
+          <h1 id="set_name"></h1>
+          <p>
+            <span id="set_email"><i class="fas fa-envelope"></i> </span>
+            <span id="set_phone" style="margin-left: 20px"
+              ><i class="fas fa-phone"></i>
+            </span>
+          </p>
+          <p>
+            <span id="set_dob"><i class="fas fa-user"></i></span>
+            <i class="fas fa-map-marker-alt" style="margin-left: 20px"></i
+            ><span id="set_city" style="margin-left: 5px"> </span>
+            <span id="set_state" style="margin-left: 5px"></span
+            ><span id="set_zip" style="margin-left: 5px"> </span>
+          </p>
+        </div>
+        <div class="right_top_div">
+          <div class="img_div">
+            <img id="img" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="content">
+        <div class="side_div">
+          <div id="education_div" style="margin-top: 10px">
+            <b><h3>Education</h3></b>
+            <h4 id="set_ug_degree"></h4>
+            <p id="set_college"></p>
+            <p id="set_subject"></p>
+            <p id="set_ug_time"></p>
+
+            <h4 id="set_pg_degree"></h4>
+            <p id="set_pg_college"></p>
+            <p id="set_pg_subject"></p>
+            <p id="set_pg_duration"></p>
+          </div>
+          <div>
+            <b><h3>Skills</h3></b>
+
+            <div id="set_skills"></div>
+          </div>
+          <div>
+            <b><h3>Hobbies</h3></b>
+
+            <div id="set_hobbies"></div>
+          </div>
+        </div>
+        <div class="wide_div">
+          <div>
+            <b><h3>Overview</h3></b>
+            <div id="set_bio">
+
+            </div>
+          </div>
+
+          <div id="set_internship_details">
+            <b><h3>Internship</h3></b>
+          </div>
+
+          <div id="set_job_details">
+            <h3>Work Experience</h3>
+          </div>
+
+          <div id="set_achievements_details">
+            <h3>Achievements</h3>
+          </div>
+
+          <div style="display: flex; justify-content: space-between">
+            <div id="set_links"></div>
+            <div style="margin-right: 20px">
+              <b><h3>Languages Known</h3></b>
+              <p id="set_languages"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="show_info">
 
 
+      <div class="top_nav">
+        <button class="top_nav_btns" onclick="showTab('personal_details')">
+          Profile
+        </button>
+        <button
+          id="education"
+          class="top_nav_btns disabled"
+          onclick="showTab('education')"
+          disabled
+        >
+          Education
+        </button>
+        <button
+          id="skill_achievements"
+          class="top_nav_btns disabled"
+          onclick="showTab('skill_achievements')"
+          disabled
+        >
+          Skills
+        </button>
+        <button
+          id="work_experience"
+          class="top_nav_btns disabled"
+          onclick="showTab('work_experience')"
+          disabled
+        >
+          Experience
+        </button>
+        <button
+          id="hobby"
+          class="top_nav_btns disabled"
+          onclick="showTab('hobby')"
+          disabled
+        >
+          Misc.
+        </button>
+      </div>
+
+
+      <div class="side_nav">
+        <div class="icon">
+          <img src="icon.png" alt="" />
+        </div>
+
+        <div class="side_nav_content">
+          <button class="side_nav_btns" onclick="showTab('personal_details')">
+            Profile
+          </button>
+          <button
+            id="education"
+            class="side_nav_btns disabled "
+            onclick="showTab('education')"
+            disabled
+          >
+            Education
+          </button>
+          <button
+            id="skill_achievements"
+            class="side_nav_btns disabled"
+            onclick="showTab('skill_achievements')"
+            disabled
+          >
+            Skills
+          </button>
+          <button
+            id="work_experience"
+            class="side_nav_btns disabled"
+            onclick="showTab('work_experience')"
+            disabled
+          >
+            Experience
+          </button>
+          <button
+            id="hobby"
+            class="side_nav_btns disabled"
+            onclick="showTab('hobby')"
+            disabled
+          >
+            Misc.
+          </button>
+
+          <div id="dynamic_line"></div>
+          <div class="line">
+            <div class="circle_container">
+              <i class="far fa-dot-circle"></i>
+            </div>
+            <div class="circle_container">
+              <i class="far fa-dot-circle"></i>
+            </div>
+            <div class="circle_container">
+              <i class="far fa-dot-circle"></i>
+            </div>
+            <div class="circle_container">
+              <i class="far fa-dot-circle"></i>
+            </div>
+            <div class="circle_container">
+              <i class="far fa-dot-circle"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab_content personal_details row">
+        <div class="col-lg-6">
+          <form class="w-full max-w-lg">
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="first-name"
+                >
+                  First Name<span style="color: red; font-size: large">*</span>
+                </label>
+                <input
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    bg-gray-200
+                    text-gray-700
+                    border border-red-500
+                    rounded
+                    py-3
+                    px-4
+                    mb-3
+                    leading-tight
+                    focus:outline-none focus:bg-white
+                  "
+                  id="fname"
+                  type="text"
+                  placeholder="Jane"
+                />
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="last-name"
+                >
+                  Last Name
+                </label>
+                <input
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    bg-gray-200
+                    text-gray-700
+                    border border-gray-200
+                    rounded
+                    py-3
+                    px-4
+                    leading-tight
+                    focus:outline-none focus:bg-white focus:border-gray-500
+                  "
+                  id="lname"
+                  type="text"
+                  placeholder="Doe"
+                />
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="email"
+                >
+                  Email <span style="color: red; font-size: large">*</span>
+                </label>
+                <input
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    bg-gray-200
+                    text-gray-700
+                    border border-gray-200
+                    rounded
+                    py-3
+                    px-4
+                    mb-3
+                    leading-tight
+                    focus:outline-none focus:bg-white focus:border-gray-500
+                  "
+                  id="email"
+                  type="email"
+                  placeholder="johndoe@gmail.com"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="telephone"
+                >
+                  Contact<span style="color: red; font-size: large">*</span>
+                </label>
+                <input
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    bg-gray-200
+                    text-gray-700
+                    border border-gray-200
+                    rounded
+                    py-3
+                    px-4
+                    mb-3
+                    leading-tight
+                    focus:outline-none focus:bg-white focus:border-gray-500
+                  "
+                  id="telephone"
+                  type="number"
+                  placeholder="9233987654"
+                  inputmode="tel"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="dob"
+                >
+                  Date of Birth
+                </label>
+                <input
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    bg-gray-200
+                    text-gray-700
+                    border border-gray-200
+                    rounded
+                    py-3
+                    px-4
+                    mb-3
+                    leading-tight
+                    focus:outline-none focus:bg-white focus:border-gray-500
+                  "
+                  id="dob"
+                  type="date"
+                  placeholder="02.05.1999"
+                />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap -mx-3 mb-2">
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="grid-city"
+                >
+                  City
+                </label>
+                <input
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    bg-gray-200
+                    text-gray-700
+                    border border-gray-200
+                    rounded
+                    py-3
+                    px-4
+                    leading-tight
+                    focus:outline-none focus:bg-white focus:border-gray-500
+                  "
+                  id="city"
+                  type="text"
+                  placeholder="Hyderabad"
+                />
+              </div>
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="grid-state"
+                >
+                  State
+                </label>
+                <div class="relative">
+                  <select
+                    class="
+                      block
+                      appearance-none
+                      w-full
+                      bg-gray-200
+                      border border-gray-200
+                      text-gray-700
+                      py-3
+                      px-4
+                      pr-8
+                      rounded
+                      leading-tight
+                      focus:outline-none focus:bg-white focus:border-gray-500
+                    "
+                    id="state"
+                  >
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Andaman and Nicobar Islands">
+                      Andaman and Nicobar Islands
+                    </option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Dadar and Nagar Haveli">
+                      Dadar and Nagar Haveli
+                    </option>
+                    <option value="Daman and Diu">Daman and Diu</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                  </select>
+                  <div
+                    class="
+                      pointer-events-none
+                      absolute
+                      inset-y-0
+                      right-0
+                      flex
+                      items-center
+                      px-2
+                      text-gray-700
+                    "
+                  >
+                    <svg
+                      class="fill-current h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-700 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="grid-zip"
+                >
+                  Zip<span style="color: red; font-size: large">*</span>
+                </label>
+                <input
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    bg-gray-200
+                    text-gray-700
+                    border border-gray-200
+                    rounded
+                    py-3
+                    px-4
+                    leading-tight
+                    focus:outline-none focus:bg-white focus:border-gray-500
+                  "
+                  id="zip"
+                  type="text"
+                  placeholder="90210"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-6" id="img_container">
+          <div>
+            <img src="user.png" id="set_img" onclick="set_img()" alt="" />
+            <center><figcaption>Select your profile image</figcaption></center>
+            <input
+              style="visibility: hidden"
+              type="file"
+              id="img2"
+              name="img"
+              src=""
+              id="file"
+              onclick="getting_img(this)"
+              accept="image/*"
+            />
+          </div>
+        </div>
+        <div class="next_div">
+          <button
+            class="btn btn-primary next"
+            id="personal"
+            onclick="next('education')"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <div class="tab_content education">
+        <h3>Undergraduate Course Details</h3>
+        <div class="flex flex-wrap -mx-3 mb-2">
+          <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+            <label
+              class="
+                block
+                uppercase
+                tracking-wide
+                text-gray-700 text-xs
+                font-bold
+                mb-2
+              "
+              for="subject"
+            >
+              Degree Name
+            </label>
+            <input
+              class="
+                appearance-none
+                block
+                w-full
+                bg-gray-200
+                text-gray-700
+                border border-red-500
+                rounded
+                py-3
+                px-4
+                mb-3
+                leading-tight
+                focus:outline-none focus:bg-white
+              "
+              id="ug_degree_name"
+              type="text"
+              placeholder="B.Tech"
+            />
+          </div>
+          <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+            <label
+              class="
+                block
+                uppercase
+                tracking-wide
+                text-gray-700 text-xs
+                font-bold
+                mb-2
+              "
+              for="college"
+            >
+              Institute
+            </label>
+            <input
+              class="
+                appearance-none
+                block
+                w-full
+                bg-gray-200
+                text-gray-700
+                border border-red-500
+                rounded
+                py-3
+                px-4
+                mb-3
+                leading-tight
+                focus:outline-none focus:bg-white
+              "
+              id="college"
+              type="text"
+              placeholder="IIT Delhi"
+            />
+          </div>
+          <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+            <label
+              class="
+                block
+                uppercase
+                tracking-wide
+                text-gray-700 text-xs
+                font-bold
+                mb-2
+              "
+              for="subject"
+            >
+              Major Subject
+            </label>
+            <input
+              class="
+                appearance-none
+                block
+                w-full
+                bg-gray-200
+                text-gray-700
+                border border-red-500
+                rounded
+                py-3
+                px-4
+                mb-3
+                leading-tight
+                focus:outline-none focus:bg-white
+              "
+              id="subject"
+              type="text"
+              placeholder="Computer Science"
+            />
+          </div>
+        </div>
+
+        <div class="flex flex-wrap -mx-3 mb-2">
+          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              class="
+                block
+                uppercase
+                tracking-wide
+                text-gray-700 text-xs
+                font-bold
+                mb-2
+              "
+              for="college-from"
+            >
+              From
+            </label>
+            <input
+              class="
+                appearance-none
+                block
+                w-full
+                bg-gray-200
+                text-gray-700
+                border border-gray-200
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none focus:bg-white focus:border-gray-500
+              "
+              id="college-from"
+              type="month"
+              placeholder="90210"
+            />
+          </div>
+          <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              class="
+                block
+                uppercase
+                tracking-wide
+                text-gray-700 text-xs
+                font-bold
+                mb-2
+              "
+              for="college-to"
+            >
+              To
+            </label>
+            <input
+              class="
+                appearance-none
+                block
+                w-full
+                bg-gray-200
+                text-gray-700
+                border border-gray-200
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none focus:bg-white focus:border-gray-500
+              "
+              id="college-to"
+              type="month"
+            />
+          </div>
+        </div>
+
+        <div class="question_container">
+          <h1>Do you have any Post Graduate degree ?</h1>
+          <button class="btn btn-success" onclick="show_pg()">Yes</button>
+        </div>
+
+        <div style="display: none" id="pg_info">
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+                for="subject"
+              >
+                Degree Name
+              </label>
+              <input
+                class="
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                id="pg_degree"
+                type="text"
+                placeholder="B.Tech"
+              />
+            </div>
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+                for="pg-college"
+              >
+                Post Garduate Institute
+              </label>
+              <input
+                class="
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                id="pg_college"
+                type="text"
+                placeholder="IIT Delhi"
+              />
+            </div>
+
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+                for="pg-subject"
+              >
+                Major Subject
+              </label>
+              <input
+                class="
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                id="pg_subject"
+                type="text"
+                placeholder="Computer Science"
+              />
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+                for="pg-college-from"
+              >
+                From
+              </label>
+              <input
+                class="
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-gray-200
+                  rounded
+                  py-3
+                  px-4
+                  leading-tight
+                  focus:outline-none focus:bg-white focus:border-gray-500
+                "
+                id="pg-college-from"
+                type="month"
+                placeholder="90210"
+              />
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+                for="pg-college-to"
+              >
+                To
+              </label>
+              <input
+                class="
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-gray-200
+                  rounded
+                  py-3
+                  px-4
+                  leading-tight
+                  focus:outline-none focus:bg-white focus:border-gray-500
+                "
+                id="pg-college-to"
+                type="month"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="next_div">
+          <button
+            class="btn btn-primary next"
+            id="education"
+            onclick="next('skill_achievements')"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <div class="tab_content skill_achievements">
+        <div class="row">
+          <div class="col-lg-6 flex-start">
+            <div style="width: 90%">
+              <div
+                class="
+                  skill
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+              >
+                Skills
+              </div>
+              <div id="skill-container">
+                <input
+                  type="search"
+                  placeholder="Search for skills"
+                  value=""
+                  onkeyup="searchSkill(this.value)"
+                  name=""
+                  id="searchSkill"
+                />
+                <div class="skills" onclick="addskill(id)" id="React">
+                  React
+                </div>
+                <div class="skills" onclick="addskill(id)" id="NodeJs">
+                  NodeJs
+                </div>
+                <div class="skills" onclick="addskill(id)" id="Marketing">
+                  Marketing
+                </div>
+                <div class="skills" onclick="addskill(id)" id="Python">
+                  Python
+                </div>
+                <div class="skills" onclick="addskill(id)" id="C Programming">
+                  C Programming
+                </div>
+              </div>
+              <div id="new_skill"></div>
+              <div class="btn btn-warning" onclick="addskill('inp')">
+                Add <i class="fa fa-plus" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 flex-start">
+            <div style="width: 90%">
+              <input
+                class="
+                  achievement
+                  skill
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                type="text"
+                placeholder="Achievements"
+              />
+              <div id="new_achievement"></div>
+              <div class="btn btn-warning" onclick="addachievement()">
+                Add
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="next_div">
+          <button
+            class="btn btn-primary next"
+            onclick="next('work_experience')"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <div class="tab_content work_experience">
+        <h3>
+          If you have more than 2 job experiences then internship details not
+          needed.
+        </h3>
+        <div id="fresher">
+          <h3>Internship Details</h3>
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+                for="internship-organization"
+              >
+                Internship organization
+              </label>
+              <input
+                class="
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                id="internship-organization"
+                type="text"
+                placeholder="Organization"
+              />
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+                for="internship-subject"
+              >
+                Internship subject
+              </label>
+              <input
+                class="
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                id="internship-subject"
+                type="text"
+                placeholder="Subject"
+              />
+            </div>
+          </div>
+
+          <label class="block text-left" style="max-width: 400px">
+            <span class="text-gray-700">Description</span>
+            <textarea
+              id="notes"
+              class="form-textarea mt-1 block w-full"
+              rows="3"
+              placeholder="Enter your experiences from the internship"
+            ></textarea>
+          </label>
+          <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+            <label
+              class="
+                block
+                uppercase
+                tracking-wide
+                text-gray-700 text-xs
+                font-bold
+                mb-2
+              "
+              for="duration"
+            >
+              Internship or Training duration
+            </label>
+            <div class="relative">
+              <select
+                class="
+                  block
+                  appearance-none
+                  w-full
+                  bg-gray-200
+                  border border-gray-200
+                  text-gray-700
+                  py-3
+                  px-4
+                  pr-8
+                  rounded
+                  leading-tight
+                  focus:outline-none focus:bg-white focus:border-gray-500
+                "
+                id="duration"
+              >
+                <option value="One Month">One Month</option>
+                >
+                <option value="Two Months">Two Months</option>
+                >
+                <option value="Three Months">Three Months</option>
+                >
+                <option value="Four Months">Four Months</option>
+                >
+                <option value="Five Months">Five Months</option>
+                >
+                <option value="Six Months">Six Months</option>
+                >
+              </select>
+              <div
+                class="
+                  pointer-events-none
+                  absolute
+                  inset-y-0
+                  right-0
+                  flex
+                  items-center
+                  px-2
+                  text-gray-700
+                "
+              >
+                <svg
+                  class="fill-current h-4 w-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="professional">
+          <h3>Add your professional details (Max 3 companies)</h3>
+
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+              >
+                Company
+              </label>
+              <input
+                class="
+                  company_name
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                type="text"
+                placeholder="Company"
+              />
+            </div>
+
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+              >
+                Job Responsibility
+              </label>
+              <input
+                class="
+                  company_post
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                type="text"
+                placeholder="Post"
+              />
+            </div>
+          </div>
+          <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+              >
+                From
+              </label>
+              <input
+                class="
+                  company_time_from
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-gray-200
+                  rounded
+                  py-3
+                  px-4
+                  leading-tight
+                  focus:outline-none focus:bg-white focus:border-gray-500
+                "
+                type="month"
+                placeholder="90210"
+              />
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+              <label
+                class="
+                  block
+                  uppercase
+                  tracking-wide
+                  text-gray-700 text-xs
+                  font-bold
+                  mb-2
+                "
+              >
+                To
+              </label>
+              <input
+                class="
+                  company_time_to
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-gray-200
+                  rounded
+                  py-3
+                  px-4
+                  leading-tight
+                  focus:outline-none focus:bg-white focus:border-gray-500
+                "
+                type="month"
+              />
+            </div>
+          </div>
+          <label class="block text-left" style="max-width: 50%">
+            <span class="text-gray-700"
+              ><b> Work Experience And Details </b>
+            </span>
+            <textarea
+              placeholder="Things you have explored (Max 50 words)"
+              class="form-textarea mt-1 block w-full company_experience_details"
+              rows="3"
+            ></textarea>
+          </label>
+
+          <div id="box"></div>
+          <div class="btn btn-warning" onclick="add_office()">
+            Add Office
+            <i class="fa fa-plus" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="next_div">
+          <button class="btn btn-primary next" onclick="next('hobby')">
+            Next
+          </button>
+        </div>
+      </div>
+
+      <div class="tab_content hobby">
+        <div class="row">
+          <div class="col-lg-6 flex-start">
+            <div style="width: 90%">
+              <div
+                class="
+                  appearance-none
+                  block
+                  w-full
+                  bg-gray-200
+                  text-gray-700
+                  border border-red-500
+                  rounded
+                  py-3
+                  px-4
+                  mb-3
+                  leading-tight
+                  focus:outline-none focus:bg-white
+                "
+                id="hobby_btn"
+                onclick="toggle_hobbies_list()"
+              >
+                Hobbies & Extra-curriculars
+              </div>
+              <div id="hobby-container">
+                <input
+                  type="search"
+                  placeholder="Search for hobby"
+                  value=""
+                  onkeyup="searchHobby(this.value)"
+                  name=""
+                  id="searchHobby"
+                />
+                <div class="hobbies" onclick="addhobby(id)" id="Photography">
+                  Photography
+                </div>
+                <div class="hobbies" onclick="addhobby(id)" id="Travelling">
+                  Travelling
+                </div>
+                <div class="hobbies" onclick="addhobby(id)" id="Writing">
+                  Writing
+                </div>
+                <div class="hobbies" onclick="addhobby(id)" id="Painting">
+                  Painting
+                </div>
+                <div class="hobbies" onclick="addhobby(id)" id="Music">
+                  Music
+                </div>
+              </div>
+              <div id="new_hobby"></div>
+              <button class="btn btn-primary" onclick="addhobby('inp')">
+                Add Your Own
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div style="width: 80%">
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label
+                    class="
+                      block
+                      uppercase
+                      tracking-wide
+                      text-gray-700 text-xs
+                      font-bold
+                      mb-2
+                    "
+                    for=""
+                  >
+                    LinkedIn
+                  </label>
+                  <input
+                    class="
+                      appearance-none
+                      block
+                      w-full
+                      bg-gray-200
+                      text-gray-700
+                      border border-gray-200
+                      rounded
+                      py-3
+                      px-4
+                      mb-3
+                      leading-tight
+                      focus:outline-none focus:bg-white focus:border-gray-500
+                    "
+                    id="linkedin"
+                    type="text"
+                    placeholder="www.linkedin.com/in/sayantan-dutta-sd1999"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label
+                    class="
+                      block
+                      uppercase
+                      tracking-wide
+                      text-gray-700 text-xs
+                      font-bold
+                      mb-2
+                    "
+                    for=""
+                  >
+                    GitHub
+                  </label>
+                  <input
+                    class="
+                      appearance-none
+                      block
+                      w-full
+                      bg-gray-200
+                      text-gray-700
+                      border border-gray-200
+                      rounded
+                      py-3
+                      px-4
+                      mb-3
+                      leading-tight
+                      focus:outline-none focus:bg-white focus:border-gray-500
+                    "
+                    id="github"
+                    type="text"
+                    placeholder="https://github.com/sayantanD1999"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label
+                    class="
+                      block
+                      uppercase
+                      tracking-wide
+                      text-gray-700 text-xs
+                      font-bold
+                      mb-2
+                    "
+                    for=""
+                  >
+                    Portfolio
+                  </label>
+                  <input
+                    class="
+                      appearance-none
+                      block
+                      w-full
+                      bg-gray-200
+                      text-gray-700
+                      border border-gray-200
+                      rounded
+                      py-3
+                      px-4
+                      mb-3
+                      leading-tight
+                      focus:outline-none focus:bg-white focus:border-gray-500
+                    "
+                    id="portfolio"
+                    type="text"
+                    placeholder="www.janedoe.com"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label
+                    class="
+                      block
+                      uppercase
+                      tracking-wide
+                      text-gray-700 text-xs
+                      font-bold
+                      mb-2
+                    "
+                    for=""
+                  >
+                    Drive link for documents
+                  </label>
+                  <input
+                    class="
+                      appearance-none
+                      block
+                      w-full
+                      bg-gray-200
+                      text-gray-700
+                      border border-gray-200
+                      rounded
+                      py-3
+                      px-4
+                      mb-3
+                      leading-tight
+                      focus:outline-none focus:bg-white focus:border-gray-500
+                    "
+                    id="drivedocs"
+                    type="text"
+                    placeholder="www.johndoe.com"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label
+                    class="
+                      block
+                      uppercase
+                      tracking-wide
+                      text-gray-700 text-xs
+                      font-bold
+                      mb-2
+                    "
+                    for=""
+                  >
+                    Languages
+                  </label>
+                  <input
+                    class="
+                      appearance-none
+                      block
+                      w-full
+                      bg-gray-200
+                      text-gray-700
+                      border border-gray-200
+                      rounded
+                      py-3
+                      px-4
+                      mb-3
+                      leading-tight
+                      focus:outline-none focus:bg-white focus:border-gray-500
+                    "
+                    id="languages"
+                    type="text"
+                    placeholder="Hindi,English,French"
+                  />
+                </div>
+              </div>
+
+              <label class="block text-left" style="max-width: 400px">
+                <span class="text-gray-700"><b> Bio</b> </span>
+                <textarea
+                  placeholder="Add a bio to your profile (Max 50 words)"
+                  id="bio"
+                  class="form-textarea mt-1 block w-full"
+                  rows="3"
+                ></textarea>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div>
+              <label for=""> <b>Select Theme</b> </label>
+              <div class="theme_box">
+                <div class="colors" onclick="set_theme(this,id)" id="#f98671">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="colors" onclick="set_theme(this,id)" id="#ff8aff">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="colors" onclick="set_theme(this,id)" id="#d6f793">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="colors" onclick="set_theme(this,id)" id="#00e0e0">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="colors" onclick="set_theme(this,id)" id="#bc7cf7">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="colors" onclick="set_theme(this,id)" id="#fd5e7c">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="colors" onclick="set_theme(this,id)" id="#b676b6">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="colors" onclick="set_theme(this,id)" id="#8377ce">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="colors" onclick="set_theme(this,id)" id="#72b0b0">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <button class="btn btn-primary" onclick="get_pdf_name()">
+              Download as PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script>
-
-        function show_info() {
-            document.getElementById("show_info").style.display = "block";
-            document.getElementById("content").style.display = "block";
-            document.getElementById("front").style.display = "none";
+      var tab = document.getElementsByClassName("tab_content");
+      for (let i = 1; i < tab.length; i++) {
+        tab[i].style.display = "none";
+      }
+      function showTab(n) {
+        for (let i = 0; i < tab.length; i++) {
+          tab[i].style.display = "none";
         }
-
-        var loadFile = function (event) {
-            var image = document.getElementById('output');
-            image.src = URL.createObjectURL(event.target.files[0]);
-        };
-
-        function yesfresher() {
-
-            document.getElementById("fresher").style.display = "block";
-            document.getElementById("yes").disabled = true;
-            document.getElementById("no").disabled = true;
+        if (n == "personal_details") {
+          document.getElementsByClassName(n)[0].style.display = "flex";
+        } else {
+          document.getElementsByClassName(n)[0].style.display = "block";
         }
+      }
 
-        function notfresher() {
+      var tabCount = 1;
 
-            document.getElementById("professional").style.display = "block";
-            document.getElementById("no").disabled = true;
-            document.getElementById("yes").disabled = true;
-
+      w = 8;
+      function next(n) {
+        if (tabCount < 5) {
+          tabCount = tabCount + 1;
+          w = w + 16;
+          var line = document.getElementById("dynamic_line");
+          line.style.height = w + "%";
+          line.style.transition = "1s";
         }
-        count = 0
-
-        function add_office() {
-
-            count = count + 1;
-            console.log(count);
-
-            if (count < 3) {
-                var div = document.createElement("div");
-                div.id = "office";
-                var company = document.createElement("input");
-                company.setAttribute("type", "text");
-                company.setAttribute("placeholder", "Company");
-                company.setAttribute("class", "ip company_name");
-                //company.setAttribute("class", "company_name");
-
-                // var com_nam2 = document.createElement("i");
-                // com_nam2.setAttribute("class", "fa fa-briefcase");
-
-                var post = document.createElement("input");
-                post.setAttribute("type", "text");
-                post.setAttribute("placeholder", "Responsibility");
-                post.setAttribute("class", "ip company_post");
-                //post.setAttribute("class", "company_post");
-
-                // var com_pos2 = document.createElement("i");
-                // com_pos2.setAttribute("class", "fa fa-id-badge");
-
-                var period = document.createElement("input");
-                period.setAttribute("type", "text");
-                period.setAttribute("placeholder", "Duration");
-                period.setAttribute("class", "ip time_span");
-                //period.setAttribute("class", "time_span");
-
-                // var com_time2 = document.createElement("i");
-                // com_time2.setAttribute("class", "fa fa-clock-o");
-
-                var b = document.createElement("br");
-                console.log("g");
-                // div.appendChild(com_nam2);
-                div.appendChild(company);
-                div.appendChild(b);
-                div.appendChild(post);
-                div.appendChild(b);
-                div.appendChild(period);
-                div.appendChild(b);
-
-                document.getElementById("box").appendChild(div);
-
-            }
-            else {
-                alert("Maximum 3 companies' details are accepted");
-            }
-
+        var tab = document.getElementsByClassName("tab_content");
+        for (let i = 0; i < tab.length; i++) {
+          tab[i].style.display = "none";
         }
-
-        function addskill() {
-            var skill = document.createElement("input");
-            skill.setAttribute("type", "text");
-            skill.setAttribute("placeholder", "skill");
-            skill.setAttribute("class", "ip skill");
-            var b = document.createElement("BR");
-
-            document.getElementById("new_skill").appendChild(skill);
-            document.getElementById("new_skill").appendChild(b);
-        }
-
-        function addachievement() {
-            var achievement = document.createElement("input");
-            achievement.setAttribute("type", "text");
-            achievement.setAttribute("placeholder", "Achievement");
-            achievement.setAttribute("class", "ip achievement");
-            //achievement.setAttribute("class", "achievement");
-
-            var b = document.createElement("BR");
-
-            document.getElementById("new_achievement").appendChild(achievement);
-            document.getElementById("new_achievement").appendChild(b);
-        }
-
-        function show_pg() {
-            document.getElementById("pg_info").style.display = "block";
-            document.getElementById("pg_details").style.display = "block";
-        }
-        function submit() {
-            // document.getElementById("pdf").disabled = false;
-
-            var theme = document.getElementsByClassName("set-style");
-            var color = document.getElementById("color").value;
-            console.log(color);
-            var set_theme;
-            if (color == "white") {
-                set_theme = "rgb(255,255,255)";
-            }
-            if (color == "pink") {
-                set_theme = "rgb(228, 48, 78)";
-            }
-            if (color == "blue") {
-                set_theme = "rgb(21, 155, 196)";
-
-            }
-            for (var i = 0; i < theme.length; i++) {
-                theme[i].style.color = set_theme;
-            }
-
-
-
-            var fullname = document.getElementById("name").value;
-            var dob = document.getElementById("dob").value;
-            var email = document.getElementById("email").value;
-            var address = document.getElementById("address").value;
-            var phone = document.getElementById("telephone").value;
-            var pic = document.getElementById("img").src;
-            console.log(phone);
-
-            document.getElementById("set_name").innerHTML = fullname;
-            document.getElementById("set_dob").innerHTML = dob;
-            document.getElementById("set_email").innerHTML = email;
-            document.getElementById("set_address").innerHTML = address;
-            document.getElementById("set_phone").innerHTML = phone;
-            //document.getElementById("set_pic").src=pic;
-
-
-            var college = document.getElementById("college").value;
-            var subject = document.getElementById("subject").value;
-            var from_to = document.getElementById("course_duration").value;
-            var bio = document.getElementById("bio").value;
-
-            document.getElementById("set_bio").innerHTML = bio;
-            document.getElementById("set_college").innerHTML = college;
-            document.getElementById("set_subject").innerHTML = subject;
-            document.getElementById("set_from_to").innerHTML = from_to;
-
-
-            var University = document.getElementById("pg_college").value;
-            var pg_subject = document.getElementById("pg_subject").value;
-            var pg_from_to = document.getElementById("pg_course_duration").value;
-
-            document.getElementById("set_pg_college").innerHTML = University;
-            document.getElementById("set_pg_subject").innerHTML = pg_subject;
-            document.getElementById("set_pg_from_to").innerHTML = pg_from_to;
-
-            if (document.getElementById("fresher").style.display == "block") {
-                document.getElementById("div1").style.display = "block";
-                i_org = document.getElementById("internship-organization").value;
-                i_sub = document.getElementById("internship-subject").value;
-                i_notes = document.getElementById("notes").value;
-                i_time = document.getElementById("duration").value;
-
-                document.getElementById("set_io").innerHTML = i_org;
-                document.getElementById("set_is").innerHTML = i_sub;
-                document.getElementById("set_time").innerHTML = i_time;
-                document.getElementById("set_notes").innerHTML = i_notes;
-                console.log(i_time);
-            }
-
-
-            if (document.getElementById("professional").style.display == "block") {
-                document.getElementById("div2").style.display = "block";
-                cn = [];
-                cp = [];
-                ct = [];
-
-                p_org = document.getElementsByClassName("company_name");
-                for (var i = 0; i < p_org.length; i++) {
-                    var x = p_org[i].value;
-                    cn.push(x);
-                }
-                console.log(cn);
-                p_post = document.getElementsByClassName("company_post");
-                for (var i = 0; i < p_post.length; i++) {
-                    var x = p_post[i].value;
-                    cp.push(x);
-                }
-                console.log(cp);
-                p_time = document.getElementsByClassName("time_span");
-                for (var i = 0; i < p_time.length; i++) {
-                    var x = p_time[i].value;
-                    ct.push(x);
-                }
-                console.log(ct);
-
-                for (var i = 0, j = 0, k = 0; i < cn.length, j < cp.length, k < ct.length; i++, j++, k++) {
-                    var main_div = document.createElement("div");
-
-                    var cn_div = document.createElement("div");
-                    cn_div.className = "set2";
-                    cn_div.innerHTML = cn[i];
-                    var com_nam = document.createElement("i");
-                    com_nam.setAttribute("class", "fa fa-briefcase");
-                    console.log(cn[i]);
-
-                    var cp_div = document.createElement("div");
-                    cp_div.className = "set2";
-                    cp_div.innerHTML = cp[j];
-                    var com_pos = document.createElement("i");
-                    com_pos.setAttribute("class", "fa fa-id-badge");
-                    console.log(cp[j]);
-
-                    var ct_div = document.createElement("div");
-                    ct_div.className = "set2";
-                    ct_div.innerHTML = ct[k];
-                    var com_time = document.createElement("i");
-                    com_time.setAttribute("class", "fa fa-clock-o");
-                    console.log(ct[k]);
-
-                    var b = document.createElement("br");
-
-
-                    main_div.appendChild(com_nam);
-                    main_div.appendChild(cn_div);
-                    main_div.appendChild(b);
-                    main_div.appendChild(com_pos);
-                    main_div.appendChild(cp_div);
-                    main_div.appendChild(b);
-                    main_div.appendChild(com_time);
-                    main_div.appendChild(ct_div);
-                    main_div.appendChild(b);
-
-                    document.getElementById("profession").appendChild(main_div);
-                }
-
-            }
-
-            skills_arr = [];
-            skill = document.getElementsByClassName("skill");
-            for (var i = 0; i < skill.length; i++) {
-                var x = skill[i].value;
-                skills_arr.push(x);
-            }
-            console.log(skills_arr);
-            var main_div2 = document.createElement("div");
-
-            for (var i = 0; i < skills_arr.length; i++) {
-
-
-                var skill_div = document.createElement("div");
-                skill_div.className = "set";
-                skill_div.innerHTML = skills_arr[i];
-
-                var skill_nam = document.createElement("i");
-                skill_nam.setAttribute("class", "set_i fa fa-arrow-right");
-
-                main_div2.appendChild(skill_nam);
-                main_div2.appendChild(skill_div);
-
-                document.getElementById("set_skill_div").appendChild(main_div2);
-
-            }
-
-            achievement_arr = [];
-            achievement = document.getElementsByClassName("achievement");
-            for (var i = 0; i < achievement.length; i++) {
-                var x = achievement[i].value;
-                achievement_arr.push(x);
-            }
-            console.log(achievement_arr);
-
-            var main_div3 = document.createElement("div");
-
-            for (var i = 0; i < achievement_arr.length; i++) {
-
-
-                var achievement_div = document.createElement("div");
-                achievement_div.className = "set";
-                achievement_div.innerHTML = achievement_arr[i];
-
-                var skill_nam = document.createElement("i");
-                skill_nam.setAttribute("class", "set_i fa fa-arrow-right");
-
-                main_div3.appendChild(skill_nam);
-                main_div3.appendChild(achievement_div);
-
-                document.getElementById("set_achievement_div").appendChild(main_div3);
-
-            }
-
-
-            //var hobbies = document.getElementsByClassName("ip3");
-            var hobbies = document.getElementsByName("button");
-            hobbies_arr = [];
-            for (var i = 0; i < hobbies.length; i++) {
-                if (hobbies[i].checked == true) {
-                    var x = hobbies[i].value;
-                    hobbies_arr.push(x);
-                    var hobbies_nam = document.createElement("i");
-                    hobbies_nam.setAttribute("class", "set_i fa fa-arrow-right");
-                    var hobbies_div = document.createElement("div");
-                    hobbies_div.className = "set";
-                    hobbies_div.innerHTML = x;
-                    var t = document.getElementById("set_hobbies_div");
-                    t.appendChild(hobbies_nam);
-                    t.appendChild(hobbies_div);
-                    console.log(x);
-                }
-
-            }
-            document.getElementById("pdf").disabled = false;
-            console.log(hobbies_arr);
-        }
-
-        function pdf() {
-            const invoice = this.document.getElementById("content");
-            console.log(invoice);
-            console.log(window);
-            var opt = {
-                margin: 0,
-                filename: 'myfile.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 1 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
-            html2pdf().from(invoice).set(opt).save();
-        }
-
+        document.getElementsByClassName(n)[0].style.display = "block";
+        document.getElementById(n).disabled = false;
+        document.getElementById(n).classList.remove("disabled");
+      }
     </script>
-</body>
-
+  </body>
 </html>
