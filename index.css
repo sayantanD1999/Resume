@@ -15,7 +15,6 @@ body {
   z-index: 1;
   top: 0;
   left: 0;
-  /* overflow: auto; */
 }
 .side_nav_content {
   position: relative;
@@ -29,12 +28,16 @@ body {
   outline: none !important;
   cursor: pointer;
   height: 16%;
-  width: 97%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(216, 224, 241);
 }
-
+.disabled {
+  background-color: #cccccc;
+  color: #666666;
+}
 
 .line {
   position: absolute;
@@ -42,12 +45,12 @@ body {
   right: 0;
   height: 100%;
   width: 6px;
-  background-color:transparent;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
 }
 
-#dynamic_line{
+#dynamic_line {
   position: absolute;
   top: 0;
   right: 0;
@@ -56,7 +59,7 @@ body {
   background-color: blue;
 }
 
-.circle_container{
+.circle_container {
   z-index: 1;
   height: 16%;
   width: 6px;
@@ -65,7 +68,7 @@ body {
   align-items: center;
 }
 
-.fa-dot-circle{
+.fa-dot-circle {
   color: rgb(21, 0, 255);
   z-index: 1;
 }
@@ -98,20 +101,23 @@ body {
   padding-bottom: 50px;
 }
 
-#hobby-container,#skill-container {
+#hobby-container,
+#skill-container {
   width: 100%;
   background-color: darkgray;
   border: 1px solid #ddd;
 }
 
-#searchHobby,#searchSkill {
+#searchHobby,
+#searchSkill {
   padding-left: 5px;
   height: 40px;
   outline: none;
   width: 100%;
 }
 
-.hobbies,.skills {
+.hobbies,
+.skills {
   background-color: rgb(247, 247, 247);
   cursor: pointer;
   height: 30px;
@@ -122,29 +128,32 @@ body {
   background-color: rgb(179, 179, 179);
 }
 
-.toggle_list,.toggle_list_skill {
+.toggle_list,
+.toggle_list_skill {
   display: none;
 }
 
-.addedskill,.addedhobby{
-width: fit-content;
-padding: 8px;
+.addedskill,
+.addedhobby {
+  width: fit-content;
+  padding: 8px;
   background-color: #ddd;
   border-radius: 20px;
-  display:flex;
-  justify-content:space-around;
+  display: flex;
+  justify-content: space-around;
   gap: 5px;
   margin: 5px;
 }
 
-#new_skill,#new_hobby{
+#new_skill,
+#new_hobby {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
 }
 
-.cross{
+.cross {
   cursor: pointer;
   font-size: large;
   font-weight: bolder;
@@ -168,7 +177,7 @@ padding: 8px;
   justify-content: center;
   align-items: center;
 }
-.fa-check-circle{
+.fa-check-circle {
   display: none;
   color: rgb(255, 255, 255);
 }
@@ -212,35 +221,38 @@ padding: 8px;
   justify-content: center;
   align-items: center;
 }
-/* .row{
-  margin: 0 !important;
-} */
-.next_div{
+
+.next_div {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-size:x-large;
-  font-weight:500;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: x-large;
+  font-weight: 500;
   margin-top: 20px;
   margin-bottom: 20px;
   color: rgb(0, 0, 0);
 }
 
-.flex-start{
+.flex-start {
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-#professional{
+#professional {
   margin-top: 70px;
 }
 
-#pdf_name_setter{
+#pdf_name_setter {
   padding-left: 20px;
   height: 200px;
   width: 280px;
@@ -250,7 +262,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   align-items: center;
 }
-#pdf_ip{
+#pdf_ip {
   height: 30px;
   width: 80%;
   border-radius: 5px;
@@ -258,21 +270,19 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 10px;
 }
 
-#whole_page{
+#whole_page {
   z-index: 1;
-position: fixed;
-height: 100%;
-width: 100%;
-top: 0;
-left: 0;
-background-color: rgba(20, 20, 20, 0.836);
-justify-content: center;
-align-items: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(20, 20, 20, 0.836);
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 835px) {
-
-
   .top_nav {
     width: 100%;
     height: 72px;
@@ -280,7 +290,7 @@ align-items: center;
     position: fixed;
     display: flex;
     gap: 0px;
-    background-color:blueviolet;
+    background-color: blueviolet;
     justify-content: space-evenly;
     box-shadow: 0 0 10px gray;
   }
@@ -293,14 +303,15 @@ align-items: center;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size:revert;
+    font-size: revert;
     border: none;
   }
 
-  .disabled{
-    background-color:rgb(161 126 185);
+  .disabled {
+    background-color: #cccccc;
+    color: #666666;
   }
-  .side_nav{
+  .side_nav {
     display: none;
   }
   .tab_content {
@@ -310,11 +321,11 @@ align-items: center;
     width: 100%;
     overflow-x: hidden;
     padding-top: 25%;
-  } 
+  }
 }
 
-@media only screen and (width: 1024px){
-  .side_nav{
+@media only screen and (width: 1024px) {
+  .side_nav {
     display: none;
   }
   .tab_content {
@@ -331,7 +342,7 @@ align-items: center;
     position: fixed;
     display: flex;
     gap: 0px;
-    background-color:blueviolet;
+    background-color: blueviolet;
     justify-content: space-evenly;
     box-shadow: 0 0 10px gray;
   }
@@ -344,15 +355,17 @@ align-items: center;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    font-size:revert;
+    font-size: revert;
     border: none;
   }
-
+  .disabled {
+    background-color: #cccccc;
+    color: #666666;
+  }
 }
 
-
 /* PDF */
-.top_div{
+.top_div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -361,31 +374,31 @@ align-items: center;
   padding-left: 30px;
   padding-right: 50px;
 }
-.content{
+.content {
   margin-top: 20px;
   display: flex;
   justify-content: flex-start;
 }
-.side_div{
+.side_div {
   width: 25%;
   display: flex;
   flex-direction: column;
   padding-left: 30px;
 }
-.side_div>div{
+.side_div > div {
   width: 100%;
   height: auto;
   margin-top: 20px;
   /* background-color: blue; */
 }
 
-.wide_div{
+.wide_div {
   width: 75%;
 }
-.wide_div>div{
+.wide_div > div {
   padding: 10px;
 }
-.img_div{
+.img_div {
   margin-top: 90px;
   height: 160px;
   width: 160px;
@@ -394,10 +407,8 @@ align-items: center;
   justify-content: center;
   align-items: center;
 }
-#img{
+#img {
   height: 150px;
   width: 150px;
   border-radius: 75px;
 }
-
-
