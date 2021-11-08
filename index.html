@@ -99,9 +99,7 @@
         <div class="wide_div">
           <div>
             <b><h3>Overview</h3></b>
-            <div id="set_bio">
-
-            </div>
+            <div id="set_bio"></div>
           </div>
 
           <div id="set_internship_details">
@@ -128,8 +126,6 @@
     </div>
 
     <div id="show_info">
-
-
       <div class="top_nav">
         <button class="top_nav_btns" onclick="showTab('personal_details')">
           Profile
@@ -167,7 +163,6 @@
           Misc.
         </button>
       </div>
-
 
       <div class="side_nav">
         <div class="icon">
@@ -1383,7 +1378,10 @@
         </div>
 
         <div class="next_div">
-          <button class="btn btn-primary next" onclick="next('hobby','hobby_side')">
+          <button
+            class="btn btn-primary next"
+            onclick="next('hobby','hobby_side',5)"
+          >
             Next
           </button>
         </div>
@@ -1707,25 +1705,31 @@
       var tabCount = 1;
 
       w = 8;
-      function next(n,m) {
-        if (tabCount < 5) {
-          tabCount = tabCount + 1;
-          w = w + 16;
-          var line = document.getElementById("dynamic_line");
-          line.style.height = w + "%";
-          line.style.transition = "1s";
-        }
+      function next(n, m) {
         var tab = document.getElementsByClassName("tab_content");
         for (let i = 0; i < tab.length; i++) {
           tab[i].style.display = "none";
+          if (
+            document.getElementById(m).disabled == false ||
+            document.getElementById(n).disabled == false
+          ) {
+            document.getElementsByClassName(n)[0].style.display = "block";
+          } else {
+            if (tabCount < 5) {
+              tabCount = tabCount + 1;
+              w = w + 16;
+              var line = document.getElementById("dynamic_line");
+              line.style.height = w + "%";
+              line.style.transition = "1s";
+              document.getElementsByClassName(n)[0].style.display = "block";
+              document.getElementById(n).disabled = false;
+              document.getElementById(n).classList.remove("disabled");
+              document.getElementById(m).disabled = false;
+              console.log(document.getElementById(m));
+              document.getElementById(m).classList.remove("disabled");
+            }
+          }
         }
-        document.getElementsByClassName(n)[0].style.display = "block";
-        document.getElementById(n).disabled = false;
-        document.getElementById(n).classList.remove("disabled");
-        document.getElementById(m).disabled = false;
-        console.log(document.getElementById(m));
-        document.getElementById(m).classList.remove("disabled");
-
       }
     </script>
   </body>
