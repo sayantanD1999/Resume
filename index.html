@@ -179,15 +179,15 @@
             Profile
           </button>
           <button
-            id="education"
-            class="side_nav_btns disabled "
+            id="education_side"
+            class="side_nav_btns disabled"
             onclick="showTab('education')"
             disabled
           >
             Education
           </button>
           <button
-            id="skill_achievements"
+            id="skill_achievements_side"
             class="side_nav_btns disabled"
             onclick="showTab('skill_achievements')"
             disabled
@@ -195,7 +195,7 @@
             Skills
           </button>
           <button
-            id="work_experience"
+            id="work_experience_side"
             class="side_nav_btns disabled"
             onclick="showTab('work_experience')"
             disabled
@@ -203,7 +203,7 @@
             Experience
           </button>
           <button
-            id="hobby"
+            id="hobby_side"
             class="side_nav_btns disabled"
             onclick="showTab('hobby')"
             disabled
@@ -603,7 +603,7 @@
           <button
             class="btn btn-primary next"
             id="personal"
-            onclick="next('education')"
+            onclick="next('education','education_side')"
           >
             Next
           </button>
@@ -968,7 +968,7 @@
           <button
             class="btn btn-primary next"
             id="education"
-            onclick="next('skill_achievements')"
+            onclick="next('skill_achievements','skill_achievements_side')"
           >
             Next
           </button>
@@ -1062,7 +1062,7 @@
         <div class="next_div">
           <button
             class="btn btn-primary next"
-            onclick="next('work_experience')"
+            onclick="next('work_experience','work_experience_side')"
           >
             Next
           </button>
@@ -1147,7 +1147,7 @@
             </div>
           </div>
 
-          <label class="block text-left" style="max-width: 400px">
+          <label class="block text-left">
             <span class="text-gray-700">Description</span>
             <textarea
               id="notes"
@@ -1364,7 +1364,7 @@
               />
             </div>
           </div>
-          <label class="block text-left" style="max-width: 50%">
+          <label class="block text-left">
             <span class="text-gray-700"
               ><b> Work Experience And Details </b>
             </span>
@@ -1383,7 +1383,7 @@
         </div>
 
         <div class="next_div">
-          <button class="btn btn-primary next" onclick="next('hobby')">
+          <button class="btn btn-primary next" onclick="next('hobby','hobby_side')">
             Next
           </button>
         </div>
@@ -1707,7 +1707,7 @@
       var tabCount = 1;
 
       w = 8;
-      function next(n) {
+      function next(n,m) {
         if (tabCount < 5) {
           tabCount = tabCount + 1;
           w = w + 16;
@@ -1722,6 +1722,10 @@
         document.getElementsByClassName(n)[0].style.display = "block";
         document.getElementById(n).disabled = false;
         document.getElementById(n).classList.remove("disabled");
+        document.getElementById(m).disabled = false;
+        console.log(document.getElementById(m));
+        document.getElementById(m).classList.remove("disabled");
+
       }
     </script>
   </body>
